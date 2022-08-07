@@ -6,7 +6,7 @@ import OrderHistoryCard from "../../components/orderHistory";
 const OrderHistory = () => {
   return (
 
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: '#F8F9FA' }}>
       <View style={{ flex: 1, justifyContent: "center", padding: 18, backgroundColor: '#F8F9FA' }}>
         <View style={{ alignItems: 'center', margin: 20 }}>
           <Text style={{ fontSize: 24 }}>Meus Pedidos</Text>
