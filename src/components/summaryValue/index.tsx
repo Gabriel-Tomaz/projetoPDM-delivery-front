@@ -9,7 +9,7 @@ interface Props {
     label?: string
 }
 
-const SummaryValue = ({ label = 'Continuar'}: Props) => {
+const SummaryValue = ({ label = ''}: Props) => {
     return (
         <View style={styles.containerValue}>
             <View style={styles.value}>
