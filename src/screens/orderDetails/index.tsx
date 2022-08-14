@@ -53,8 +53,6 @@ const OrderDetails = ({ num_order = 123, timestamp = '12365871', status = 'Envia
           adress="321 - Rua das Flores - Jardins..."
         />
         
-
-        <Text style={styles.text}>Tipo de Pagamento</Text>
         <PaymentCard
           active
         />

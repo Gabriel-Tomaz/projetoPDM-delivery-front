@@ -1,27 +1,23 @@
 import { Text, View, Image } from "react-native";
 import styles from "./style";
 
-import localization from '../../../assets/icons/localization.png';
-import vector from '../../../assets/icons/vector.png';
+import Icon from 'react-native-vector-icons/Feather'
 
 interface Props {
     adress?: string;
 }
 
-const InputAdressCard = ({ adress}: Props) => {
+const InputAdressCard = ({ adress }: Props) => {
     return (
         <View style={styles.container}>
-            <Image 
-                source={localization}
-            />
+
+            <Icon name="map-pin" size={22} color='#FFA200' />
 
             <View >
                 <Text style={styles.adressCard} >{adress}</Text>
             </View>
 
-            <Image
-                source={vector}
-            />
+            <Icon name="chevron-right" size={28} color='#FFA200' />
         </View>
     );
 };

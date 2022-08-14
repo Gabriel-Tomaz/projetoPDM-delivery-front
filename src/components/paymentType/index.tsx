@@ -1,24 +1,31 @@
-import { Text, View, Image } from "react-native";
+import { Text, View} from "react-native";
 import styles from "./style";
 
-import money from '../../../assets/icons/money.png';
-import creditCard from '../../../assets/icons/creditCard.png';
+import SummaryValue from "../summaryValue";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Input from "../input";
+
 
 interface Props {
-    active: boolean;
+    active?: boolean;
 }
 
-const PaymentCard = ({ active = false }: Props) => {
+const PaymentCard = ({ active = true }: Props) => {
     return (
         <View>
+            <Text style={styles.title}>Tipo de Pagamento</Text>
             <View style={styles.container}>
+
                 <View
                     style={[styles.card,
                     active && styles.cardActive
                     ]}>
 
-                    <Image style={active && { tintColor: '#FFFFFF' }}
-                        source={money}
+                    <Icon name="attach-money" size={22}
+                        style={[
+                            { color: '#FFA200' },
+                            active && { color: '#FFFFFF' }
+                        ]}
                     />
 
                     <Text
@@ -34,8 +41,11 @@ const PaymentCard = ({ active = false }: Props) => {
                     active && styles.cardActive
                     ]}>
 
-                    <Image style={active && { tintColor: '#FFFFFF' }}
-                        source={creditCard}
+                    <Icon name="credit-card" size={22}
+                        style={[
+                            { color: '#FFA200' },
+                            active && { color: '#FFFFFF' }
+                        ]}
                     />
 
                     <Text
@@ -47,7 +57,22 @@ const PaymentCard = ({ active = false }: Props) => {
                 </View>
             </View>
 
-           
+            <Text style={styles.title}>Troco</Text>
+            <View>
+                <Input
+                    placeholder="Precisa de troco?"
+                />
+            </View>
+
+            <Text style={styles.title}>Cupom</Text>
+            <View>
+                <Input
+                    placeholder="Digite o cupom"
+                />
+            </View>
+
+            <SummaryValue />
+
         </View>
     );
 };

@@ -14,7 +14,6 @@ const OrderDetailsCard = ({ product, totalOrder, amount }: Props) => {
             <View style={styles.cardsDetails}>
 
                 <View style={styles.details}>
-
                     <View style={styles.fistCard}>
                         <Image style={{width:100, height:100}}
                             source={monsterBurger}
