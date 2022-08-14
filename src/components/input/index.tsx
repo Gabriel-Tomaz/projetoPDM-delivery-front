@@ -9,7 +9,7 @@ interface Props {
 const Input = ({ label, placeholder }: Props) => {
   return (
     <View style={styles.inputContainer}>
-      {label ? <Text>{label}</Text> : null}
+      {label ? <Text style={styles.InputLable}>{label}</Text> : null}
       <TextInput
         style={styles.input}
         placeholder={placeholder ? placeholder : ""}
