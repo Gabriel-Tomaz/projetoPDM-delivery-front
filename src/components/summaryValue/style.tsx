@@ -1,9 +1,12 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
     containerValue: {
         marginTop: 30,
-        borderRadius: 4
+        borderRadius: 4,
+        backgroundColor: Colors.Gray[1],
+
     },
     value: {
         flexDirection: 'row',
@@ -14,20 +17,20 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 16,
-        color: '#1B1B1B',
+        color: Colors.Neutral.black,
         marginTop: 20,
         marginBottom: 10
     },
     titleTotal: {
         marginTop: 10,
         marginBottom: 10,
-        color: '#FFA200',
+        color: Colors.DeepYellow[6],
         fontSize: 24,
         fontWeight: 'bold'
     },
     total: {
         fontSize: 16,
-        color: '#1B1B1B',
+        color: Colors.Neutral.black,
         marginTop: 20,
         marginBottom: 10,
         fontWeight: 'bold'
@@ -35,12 +38,12 @@ const styles = StyleSheet.create({
     line: {
         borderBottomWidth: 2,
         borderStyle: 'dotted',
-        borderBottomColor: 'rgba(27, 27, 27, 0.1)',
+        borderBottomColor: Colors.Gray[4],
         marginTop: -5,
         margin: 20
     },
     button: {
-        backgroundColor: '#FFA200',
+        backgroundColor: Colors.DeepYellow[6],
         height: 60,
         borderRadius: 4,
         flexDirection: 'row',
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
         margin:20
     },
     textButton: {
-        color: '#FFFFFF',
+        color: Colors.Neutral.white,
         fontSize: 16
     }
 });

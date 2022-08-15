@@ -1,30 +1,31 @@
-import { Text, View} from "react-native";
+import { Text, View, TouchableOpacity, TouchableOpacityProps} from "react-native";
 import styles from "./style";
 
 import SummaryValue from "../summaryValue";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Input from "../input";
+import Colors from "../../styles/colors";
 
 
-interface Props {
-    active?: boolean;
+interface PaymentCardProps extends TouchableOpacityProps{
+    active?: boolean
 }
 
-const PaymentCard = ({ active = true }: Props) => {
+const PaymentCard = ({ active = true}: PaymentCardProps) => {
     return (
         <View>
             <Text style={styles.title}>Tipo de Pagamento</Text>
             <View style={styles.container}>
 
-                <View
+                <TouchableOpacity
                     style={[styles.card,
                     active && styles.cardActive
                     ]}>
 
                     <Icon name="attach-money" size={22}
                         style={[
-                            { color: '#FFA200' },
-                            active && { color: '#FFFFFF' }
+                            { color: Colors.DeepYellow[6] },
+                            active && { color: Colors.Gray[1] }
                         ]}
                     />
 
@@ -34,9 +35,9 @@ const PaymentCard = ({ active = true }: Props) => {
                         ]}>
                         Dinheiro
                     </Text>
-                </View>
+                </TouchableOpacity>
 
-                <View
+                <TouchableOpacity
                     style={[styles.card,
                     active && styles.cardActive
                     ]}>
@@ -54,7 +55,7 @@ const PaymentCard = ({ active = true }: Props) => {
                         ]}>
                         Cartão
                     </Text>
-                </View>
+                </TouchableOpacity>
             </View>
 
             <Text style={styles.title}>Troco</Text>

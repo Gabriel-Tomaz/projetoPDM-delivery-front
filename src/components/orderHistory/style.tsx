@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
     orderContainer: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
         maxWidth: 380,
         height: 160,
         borderRadius: 4,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Colors.Neutral.white,
         margin:10,
         elevation:10
     },
@@ -24,39 +25,40 @@ const styles = StyleSheet.create({
         width:150
     },
     title: {
-        color: '#1B1B1B',
+        color: Colors.Neutral.black,
         fontSize: 20,
     },
     timestamp: {
-        color: '#6A7D8B',
+        color: Colors.Gray[5],
         fontSize: 12
     },
     totalTitle: {
-        color: '#6A7D8B',
+        color: Colors.Gray[5],
         fontSize: 13,
         marginTop: 18
     },
     total: {
-        color: '#FFA200',
+        color: Colors.DeepYellow[6],
         fontSize: 20
     },
     secondCard:{
         alignItems: 'flex-end',
         width:150,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginTop:8
     },
     status: {
         alignItems: 'center',
         justifyContent: 'space-around',
         width: 78,
         height: 26,
-        backgroundColor: '#EDF1F8',
+        backgroundColor: Colors.Blue[1],
         marginTop: 8,
         borderRadius: 4
     },
     statusTiTle: {
-        color: '#4F77BE',
-        fontSize: 11
+        color: Colors.Blue[9],
+        fontSize: 13
     }
 });
 

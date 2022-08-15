@@ -1,15 +1,19 @@
-import { Text, View, Button } from "react-native";
+import { Text, View} from "react-native";
+
 import styles from "./style";
+
+
+import Button from '../button'
 
 
 interface Props {
     subtotal?: number,
     frete?: number,
     total?: number,
-    label?: string
+    textButton?: string
 }
 
-const SummaryValue = ({ label = ''}: Props) => {
+const SummaryValue = ({ textButton =''}: Props) => {
     return (
         <View style={styles.containerValue}>
             <View style={styles.value}>
@@ -31,11 +35,11 @@ const SummaryValue = ({ label = ''}: Props) => {
                 <Text style={styles.titleTotal}>R$114,50</Text>
             </View>
 
-            {label ?
+            {textButton ?
 
-                <View style={styles.button}>
-                    <Text  style={styles.textButton}>{label}</Text>
-                </View>
+                <Button 
+                    title = {textButton}
+                />
 
                 : null}
 

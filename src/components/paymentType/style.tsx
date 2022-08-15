@@ -1,9 +1,11 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../styles/colors";
+
 
 const styles = StyleSheet.create({
     title:{
         fontSize: 16,
-        color: '#1B1B1B',
+        color: Colors.Neutral.black,
         marginTop: 20,
         marginBottom:10
     },
@@ -23,14 +25,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     cardActive: {
-        backgroundColor: '#FFA200'
+        backgroundColor: Colors.DeepYellow[6],
     },
     text: {
-        color: '#1B1B1B',
+        color: Colors.Neutral.black,
         fontSize: 16,
     },
     textActive: {
-        color: '#FFFFFF',
+        color: Colors.Neutral.white,
     }
 });
 

@@ -1,7 +1,8 @@
 import { Text, View, Image } from "react-native";
 import styles from "./style";
 
-import backImg from '../../../assets/icons/back.png';
+import  Icon  from "react-native-vector-icons/Feather";
+import StatusOrder from "../statusOrder";
 
 interface Props {
     num_order?: string;
@@ -31,13 +32,14 @@ const OrderHistoryCard = ({ num_order, timestamp, status, totalOrder }: Props) =
                     </View>
 
                     <View style={styles.secondCard}>
-                        <View style={styles.status}>
-                            <Text style={styles.statusTiTle}>{status}</Text>
-                        </View>
-                        <Image
-                            source={backImg}
-                          
+                        
+                        <StatusOrder 
+                            status={status}
                         />
+                        <Icon name="arrow-right" size={38}
+                             style={
+                                { color: '#FFA200' }}
+                        ></Icon>
                     </View>
 
                 </View>
