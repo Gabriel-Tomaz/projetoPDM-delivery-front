@@ -11,7 +11,7 @@ interface PaymentCardProps extends TouchableOpacityProps{
     active?: boolean
 }
 
-const PaymentCard = ({ active = true}: PaymentCardProps) => {
+const PaymentCard = ({ active = true, ...rest}: PaymentCardProps) => {
     return (
         <View>
             <Text style={styles.title}>Tipo de Pagamento</Text>
@@ -20,7 +20,9 @@ const PaymentCard = ({ active = true}: PaymentCardProps) => {
                 <TouchableOpacity
                     style={[styles.card,
                     active && styles.cardActive
-                    ]}>
+                    ]}
+                    {...rest}
+                    >
 
                     <Icon name="attach-money" size={22}
                         style={[
@@ -40,7 +42,8 @@ const PaymentCard = ({ active = true}: PaymentCardProps) => {
                 <TouchableOpacity
                     style={[styles.card,
                     active && styles.cardActive
-                    ]}>
+                    ]}
+                    {...rest}>
 
                     <Icon name="credit-card" size={22}
                         style={[
