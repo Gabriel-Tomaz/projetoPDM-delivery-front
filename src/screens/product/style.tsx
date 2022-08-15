@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 
     img: {
         justifyContent: "center",
-        marginTop: -450,
+        marginTop: -350,
 
     },
 
@@ -49,19 +49,21 @@ const styles = StyleSheet.create({
     cardButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        color: '#666'
+        justifyContent: "space-evenly",
     },
 
-    text: {
-        color: '#1B1B1B',
-        fontSize: 15,
+    countButton: {
+        justifyContent: "center",
+        alignItems: 'center',
+        height: 50,
     },
+
+
 
     cor: {
         color: '#FFA200',
         backgroundColor: '#FFA200'
     }
-
 
 });
 
