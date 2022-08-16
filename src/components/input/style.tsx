@@ -4,7 +4,7 @@ import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
     inputContainer:{
-        
+        marginTop: 28
     },
     input: {
         backgroundColor: Colors.Neutral.white,
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         color: '#212529',
         borderWidth: 1,
         borderRadius: 6,
-        borderColor: Colors.Gray[2]
+        borderColor: Colors.Gray[2],
     },
     InputLable: {
         marginBottom: 8,
