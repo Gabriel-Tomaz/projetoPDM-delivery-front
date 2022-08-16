@@ -4,6 +4,8 @@ import { View, Text, ScrollView } from "react-native";
 import OrderHistoryCard from "../../components/orderHistory";
 
 const OrderHistory = () => {
+  const array = [1, 2, 3, 4];
+
   return (
 
     <ScrollView style={{ backgroundColor: '#F8F9FA' }}>
@@ -12,34 +14,16 @@ const OrderHistory = () => {
           <Text style={{ fontSize: 24 }}>Meus Pedidos</Text>
         </View>
 
-        <OrderHistoryCard
-          num_order="123"
-          status="Enviado"
-          timestamp="05/08/2022 - 15:26"
-          totalOrder="R$ 50,00"
-        />
+        {array.map(d => (
+          <OrderHistoryCard
+            num_order="123"
+            status="Enviado"
+            timestamp="05/08/2022 - 15:26"
+            totalOrder="R$ 50,00"
+            key={d}
+          />
+        ))}
 
-        <OrderHistoryCard
-          num_order="123"
-          status="Enviado"
-          timestamp="05/08/2022 - 15:26"
-          totalOrder="R$ 50,00"
-        />
-
-
-        <OrderHistoryCard
-          num_order="123"
-          status="Enviado"
-          timestamp="05/08/2022 - 15:26"
-          totalOrder="R$ 50,00"
-        />
-
-        <OrderHistoryCard
-          num_order="123"
-          status="Enviado"
-          timestamp="05/08/2022 - 15:26"
-          totalOrder="R$ 50,00"
-        />
       </View>
     </ScrollView>
   );
