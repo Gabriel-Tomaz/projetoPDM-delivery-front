@@ -1,22 +1,13 @@
 import { StyleSheet } from "react-native";
-import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
-    container:{
-        alignItems: 'flex-end',
-        width:150,
-        justifyContent: 'space-between'
-    },
-    status: {
+    container: {
         alignItems: 'center',
         justifyContent: 'space-around',
-        width: 78,
-        height: 26,
-        backgroundColor: Colors.Blue[1],
-        borderRadius: 4
+        width: 85,
+        height: 30
     },
     statusTiTle: {
-        color: Colors.Blue[9],
         fontSize: 13
     }
 });

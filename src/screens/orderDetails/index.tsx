@@ -15,7 +15,7 @@ interface Props {
   totalItens?: number;
 }
 
-const OrderDetails = ({ num_order = 123, timestamp = '12365871', status = 'Enviado', totalItens = 4 }: Props) => {
+const OrderDetails = ({ num_order = 123, timestamp = '05/08/2022 - 15:26', status = 'Enviado', totalItens = 4 }: Props) => {
   const array = [1, 2, 3, 4];
 
   return (
