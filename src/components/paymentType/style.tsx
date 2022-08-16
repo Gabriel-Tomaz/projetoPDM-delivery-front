@@ -1,35 +1,39 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../styles/colors";
+
 
 const styles = StyleSheet.create({
+    title:{
+        fontSize: 16,
+        color: Colors.Neutral.black,
+        marginTop: 20,
+        marginBottom:10
+    },
     container: {
         borderRadius: 4,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: 350,
         height: 65,
         marginTop: 10
     },
     card: {
-        backgroundColor: 'blue',
-        width: 165,
+        width: 170,
         height: 60,
         borderRadius: 4,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     cardActive: {
-        backgroundColor: '#FFA200'
+        backgroundColor: Colors.DeepYellow[6],
     },
     text: {
-        color: '#1B1B1B',
-        fontSize: 15,
+        color: Colors.Neutral.black,
+        fontSize: 16,
     },
     textActive: {
-        color: '#FFFFFF',
+        color: Colors.Neutral.white,
     }
-
-
 });
 
 export default styles;

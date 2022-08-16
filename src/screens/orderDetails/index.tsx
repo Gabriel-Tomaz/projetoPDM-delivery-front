@@ -6,6 +6,7 @@ import styles from "./style";
 import OrderDetailsCard from "../../components/orderDetails";
 import InputAdressCard from "../../components/inputAdress";
 import PaymentCard from "../../components/paymentType";
+import StatusOrder from "../../components/statusOrder";
 
 interface Props {
   num_order?: number;
@@ -32,9 +33,9 @@ const OrderDetails = ({ num_order = 123, timestamp = '12365871', status = 'Envia
             <Text style={styles.itens}>{totalItens} itens</Text>
           </View>
 
-          <View style={styles.status}>
-            <Text style={styles.statusTiTle}>{status}</Text>
-          </View>
+         <StatusOrder
+          status = "Enviado"
+         />
         </View>
 
 
@@ -53,8 +54,6 @@ const OrderDetails = ({ num_order = 123, timestamp = '12365871', status = 'Envia
           adress="321 - Rua das Flores - Jardins..."
         />
         
-
-        <Text style={styles.text}>Tipo de Pagamento</Text>
         <PaymentCard
           active
         />

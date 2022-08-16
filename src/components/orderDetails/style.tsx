@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
     cardsDetails: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
         maxWidth:355,
         borderBottomWidth: 2 ,
         borderStyle: 'solid',
-        borderBottomColor: 'rgba(27, 27, 27, 0.1)'
+        borderBottomColor: Colors.Gray[2]
     },
     details: {
         flexDirection: 'row',
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     total: {
-        color: '#FFA200',
+        color: Colors.DeepYellow[6],
         fontSize: 20
     },
     secondCard: {

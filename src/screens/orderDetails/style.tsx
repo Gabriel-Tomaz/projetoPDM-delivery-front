@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
     orderDetails: {
@@ -38,12 +39,12 @@ const styles = StyleSheet.create({
     status: {
         alignItems: 'center',
         justifyContent: 'space-around',
-        backgroundColor: '#EDF1F8',
+        backgroundColor: Colors.Blue[1],
         padding:5,
         borderRadius: 4
     },
     statusTiTle: {
-        color: '#4F77BE',
+        color: Colors.Blue[9],
         fontSize: 13
     },
     text: {
