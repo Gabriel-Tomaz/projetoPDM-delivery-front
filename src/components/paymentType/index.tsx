@@ -75,7 +75,9 @@ const PaymentCard = ({ active = true, ...rest}: PaymentCardProps) => {
                 />
             </View>
 
-            <SummaryValue />
+            <SummaryValue 
+                textButton=''
+            />
 
         </View>
     );

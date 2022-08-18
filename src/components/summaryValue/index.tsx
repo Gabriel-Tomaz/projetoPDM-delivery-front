@@ -13,7 +13,7 @@ interface Props {
     textButton?: string
 }
 
-const SummaryValue = ({ textButton =''}: Props) => {
+const SummaryValue = ({ textButton }: Props) => {
     return (
         <View style={styles.containerValue}>
             <View style={styles.value}>
