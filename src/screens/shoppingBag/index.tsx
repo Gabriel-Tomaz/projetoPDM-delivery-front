@@ -3,7 +3,7 @@ import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 
 import styles from "./style";
 
-import ItensCard from "../../components/itensOder";
+import ItensOrder from "../../components/itensOder";
 import SummaryValue from "../../components/summaryValue";
 import Input from "../../components/input";
 
@@ -30,7 +30,7 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
         </View>
 
         {array.map(d => (
-          <ItensCard
+          <ItensOrder
             product="Monster Burguer"
             totalOrder="25,50"
             amount="01"

@@ -11,7 +11,7 @@ interface Props {
     amount?: string;
 }
 
-const ItensCard = ({ product, totalOrder, amount }: Props) => {
+const ItensOrder = ({ product, totalOrder, amount }: Props) => {
 
     return (
         <View style={styles.cardsDetails}>
@@ -57,4 +57,4 @@ const ItensCard = ({ product, totalOrder, amount }: Props) => {
     );
 };
 
-export default ItensCard;
+export default ItensOrder;
