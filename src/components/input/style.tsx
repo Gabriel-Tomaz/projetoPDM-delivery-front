@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: Colors.Neutral.white,
         paddingHorizontal: 16,
-        paddingVertical: 18,
+        paddingVertical: 14,
         fontSize: 16,
         color: '#212529',
         borderWidth: 1,

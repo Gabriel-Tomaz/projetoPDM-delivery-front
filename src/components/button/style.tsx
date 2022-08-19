@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        padding: 18
+        padding: 14
     },
     titleButton: {
         color: Colors.Neutral.white,

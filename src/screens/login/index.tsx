@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Image } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import Input from "../../components/input";
 import Button from "../../components/button";
@@ -9,22 +10,22 @@ import Logo from "../../../assets/logo_login.png";
 
 const Login = () => {
   return (
-    <View
+    <KeyboardAwareScrollView
       style={{
-        flex: 1,
-        justifyContent: "center",
         padding: 18,
         backgroundColor: Colors.Neutral.white,
       }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={{ justifyContent: "center", flex: 1}}
+      scrollEnabled={false}
     >
       <View style={{ marginBottom: 32 }}>
         <View
           style={{
             flex: 1,
-            backgroundColor: "red",
             flexDirection: "row",
             justifyContent: "center",
-            marginBottom: 42
+            marginBottom: 42,
           }}
         >
           <Image source={Logo} />
@@ -33,7 +34,7 @@ const Login = () => {
         <Input label="Senha" placeholder="Digite sua senha" />
       </View>
       <Button title="Login" />
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
