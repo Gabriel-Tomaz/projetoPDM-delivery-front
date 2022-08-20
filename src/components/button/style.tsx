@@ -4,16 +4,17 @@ import Colors from "../../styles/colors";
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.DeepYellow[6],
-        height: 60,
-        borderRadius: 4,
+        borderRadius: 6,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        margin:20
+        padding: 14
     },
     titleButton: {
         color: Colors.Neutral.white,
-        fontSize: 16
+        fontSize: 16,
+        fontWeight: 'bold',
+        lineHeight: 24
     }
 });
 
