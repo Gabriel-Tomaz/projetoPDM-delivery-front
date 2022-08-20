@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home";
 import Login from "./screens/login";
 import Product from "./screens/product";
+import ShoppingBag from "./screens/shoppingBag";
 
 const Routes = () => {
   const Drawer = createDrawerNavigator();

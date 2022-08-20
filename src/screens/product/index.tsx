@@ -1,5 +1,5 @@
     import React from "react";
-    import {View, Text, ScrollView, Image, useWindowDimensions, Button} from "react-native";
+    import {View, Text, ScrollView, Image, useWindowDimensions, TouchableOpacity} from "react-native";
 
     import monster_burger from '../../../assets/icons/monster_burger.png';
     import Icon from 'react-native-vector-icons/Feather';
@@ -7,6 +7,7 @@
     import styles from "./style";
     import Title from "../../components/title";
     import Colors from "../../styles/colors";
+    import Button from "../../components/button";
 
     const Product = () => {
 
@@ -17,23 +18,19 @@
     }
     const {width, height } = useWindowDimensions();
     const [countPrice, setCountPrice] = React.useState(product.price);
-    const [count, setCount] = React.useState(1);
+    const [amount, setAmount] = React.useState(1);
 
     const handleCountMore = () => {
-        setCount(count + 1);
+        setAmount(amount + 1);
         setCountPrice(countPrice + product.price);
-
-        console.log( countPrice + count)
     }
 
     const handleCountLess = () => {
-        if(count > 1){
-            setCount(count - 1);
+        if(amount > 1){
+            setAmount(amount - 1);
             setCountPrice(countPrice - product.price);
         }
-
-        console.log( countPrice + count)
-
+        console.log( countPrice + amount)
     }
 
     React.useEffect(() => {
@@ -65,28 +62,41 @@
                   <View style={{width: width}}>
                       <Text style={styles.line}></Text>
                   </View>
-              <View style={{width: width}}>
-                  <Text style={styles.description}>
-                      {product.description}
-                  </Text>
-              </View>
-              <View style={[styles.cardButton, {width}]}>
-                  <View style={[styles.countButton ,{flexDirection: 'row', width:width/2}]}>
-                      <Button title="-" color={Colors.Gray["6"]} onPress={handleCountLess}/>
-                      <Text>{count}</Text>
-                      <Button title="+" color={Colors.DeepYellow["6"]}  onPress={handleCountMore}/>
-
+                  <View style={{width: width}}>
+                      <Text style={[styles.description, {color: Colors.Gray["5"]}]}>
+                          {product.description}
+                      </Text>
                   </View>
 
-                  <Text style={{fontWeight: 'bold', fontSize: 24,  marginLeft:20,color: Colors.DeepYellow["6"]}}>R$ {countPrice}</Text>
+                  <View style={[styles.cardButton, {width}]}>
 
+                    <Text style={{ fontSize: 22, color: Colors.Gray["6"]}}>Quantidade:</Text>
+                  <View style={[styles.secondCard, {width}]}>
+                     <View style={{flexDirection: 'row'}}>
+                         <TouchableOpacity
+                             style={styles.minus}
+                         >
+                             <Text style={{color: Colors.Gray[6]}}> - </Text>
+                         </TouchableOpacity>
+
+                         <Text style={styles.textQnt}>{amount}</Text>
+
+                         <TouchableOpacity
+                             style={styles.most}
+                         >
+                             <Text style={{color: Colors.Neutral.white}}> + </Text>
+                         </TouchableOpacity>
+                     </View>
+                      <Text style={{fontWeight: 'bold', fontSize: 32,color: Colors.DeepYellow["6"]}}>R$ {countPrice}</Text>
+                  </View>
 
               </View>
-                  <View>
 
-                      <Button title="Adicionar Sacola" color={Colors.DeepYellow["6"]} />
+                  <View style={{paddingTop: 40,}}>
+                      <Button title="Adicionar à Sacola"  />
                   </View>
               </View>
+
           </ScrollView>
       );
     };
