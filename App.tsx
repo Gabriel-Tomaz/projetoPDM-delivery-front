@@ -1,14 +1,7 @@
-import Login from './src/screens/login';
-//import OrderHistory from './src/screens/orderHistory';
-// import OrderDetails from './src/screens/orderDetails';
-// import Product from "./src/screens/product";
+import React from "react";
+import Routes from "./src/routes";
+import 'react-native-gesture-handler'
 
 export default function App() {
-  return (
-    <Login />
-    //<OrderHistory />
-    // <OrderDetails />
-    // <Product/>
-
-  );
+  return <Routes />;
 }
