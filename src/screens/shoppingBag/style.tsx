@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderBottomColor: 'rgba(27, 27, 27, 0.1)'
     },
-    titleOrder: {
+    title: {
         color: '#1B1B1B',
         fontSize: 20,
     },
