@@ -1,19 +1,24 @@
 import React from "react";
-import { View, Text } from "react-native";
+import {View, Text, useWindowDimensions} from "react-native";
 import { color } from "react-native-reanimated";
 import Colors from "../../styles/colors";
 import NavBar from "../../components/navBar";
+import styles from "../product/style";
+import Title from "../../components/title";
+import Icon from "react-native-vector-icons/Feather";
 
-const Home = () => {
+const Cardapio = () => {
+    const {width, height } = useWindowDimensions();
   return (
     <View
       style={{
         flex: 1,
         backgroundColor: Colors.Neutral.white,
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
         <NavBar/>
+
       <Text
         style={{
           fontWeight: "bold",
@@ -21,10 +26,10 @@ const Home = () => {
           textAlign: "center",
         }}
       >
-        Olá Mundooo!
+       Cardápio!
       </Text>
     </View>
   );
 };
 
-export default Home;
+export default Cardapio;
