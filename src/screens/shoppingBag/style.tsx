@@ -9,16 +9,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#F8F9FA'
     },
     titleContainer:{
+        flexDirection:'row',
         alignItems: 'center',
         height: 80, 
-        marginTop:40,
+        marginTop:25,
         borderBottomWidth: 2 ,
         borderStyle: 'solid',
         borderBottomColor: 'rgba(27, 27, 27, 0.1)'
     },
     title: {
+        marginLeft:100,
         color: '#1B1B1B',
-        fontSize: 20,
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom:10
     },
     timestamp: {
         color: '#6A7D8B',

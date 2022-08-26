@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#F8F9FA'
     },
     titleContainer:{
-        alignItems: 'center',
+        flexDirection: 'row',
+        alignContent:'center',
         height: 80, 
         marginTop:40,
         borderBottomWidth: 2 ,
@@ -17,12 +18,16 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgba(27, 27, 27, 0.1)'
     },
     titleOrder: {
+        marginLeft:70,
         color: '#1B1B1B',
-        fontSize: 20,
+        fontSize: 25,
+        fontWeight:'bold',
     },
     timestamp: {
+        marginLeft:70,
         color: '#6A7D8B',
-        fontSize: 12
+        fontSize: 13,
+        marginBottom:5
     },
     itensContainer:{
         flexDirection: 'row',
@@ -39,7 +44,8 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         color: '#1B1B1B',
-        marginTop: 18
+        marginTop:20,
+        marginBottom:5
     }
    
 });

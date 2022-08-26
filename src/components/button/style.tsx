@@ -3,12 +3,14 @@ import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.DeepYellow[6],
         borderRadius: 6,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        padding: 14
+        padding: 14,
+        borderStyle: 'solid',
+        borderColor: Colors.DeepYellow[6],
+        borderWidth: 1.5,
     },
     titleButton: {
         color: Colors.Neutral.white,
