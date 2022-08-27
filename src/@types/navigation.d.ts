@@ -5,6 +5,8 @@ export declare  global {
             Login: undefined,
             Home: undefined,
             Cardapio: undefined,
+            OrderHistory:undefined,
+            OrderDetails: undefined,
         }
     }
 }

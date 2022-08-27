@@ -29,24 +29,20 @@ const ItensOrder = ({ product, totalOrder, amount }: Props) => {
 
 
                 <View style={styles.secondCard}>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.minus}
                     >
-                        <Text style={{color: Colors.Gray[6]}}> - </Text>
+                        <Text style={{ color: Colors.Gray[6] }}> - </Text>
                     </TouchableOpacity>
 
                     <Text style={styles.textQnt}>{amount}</Text>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.most}
                     >
-                        <Text style={{color: Colors.Neutral.white}}> + </Text>
+                        <Text style={{ color: Colors.Neutral.white }}> + </Text>
                     </TouchableOpacity>
 
-
-                    {/* <Button title=" - " color={Colors.Gray["6"]} />
-                        <Text style={{ padding: 7 }}>1</Text>
-                    <Button title=" + " color={Colors.DeepYellow["6"]} /> */}
 
                 </View>
 

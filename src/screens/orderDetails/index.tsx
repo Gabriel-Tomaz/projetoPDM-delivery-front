@@ -7,6 +7,9 @@ import OrderDetailsCard from "../../components/orderDetails";
 import InputAdressCard from "../../components/inputAdress";
 import PaymentCard from "../../components/paymentType";
 import StatusOrder from "../../components/statusOrder";
+import Icon from 'react-native-vector-icons/Feather';
+import Colors from "../../styles/colors";
+
 
 interface Props {
   num_order?: number;
@@ -24,8 +27,12 @@ const OrderDetails = ({ num_order = 123, timestamp = '05/08/2022 - 15:26', statu
       <View style={styles.orderDetails}>
 
         <View style={styles.titleContainer}>
-          <Text style={styles.titleOrder}>Pedido #{num_order}</Text>
-          <Text style={styles.timestamp}>{timestamp}</Text>
+          <Icon name="arrow-left"
+            style={{ fontSize: 35, color: Colors.DeepYellow[6] }} />
+          <View style={{alignItems:'center'}}>
+            <Text style={styles.titleOrder}>Pedido #{num_order}</Text>
+            <Text style={styles.timestamp}>{timestamp}</Text>
+          </View>
         </View>
 
         <View style={styles.itensContainer}>
@@ -33,9 +40,9 @@ const OrderDetails = ({ num_order = 123, timestamp = '05/08/2022 - 15:26', statu
             <Text style={styles.itens}>{totalItens} itens</Text>
           </View>
 
-         <StatusOrder
-          status = "Enviado"
-         />
+          <StatusOrder
+            status="Enviado"
+          />
         </View>
 
 
@@ -53,7 +60,7 @@ const OrderDetails = ({ num_order = 123, timestamp = '05/08/2022 - 15:26', statu
         <InputAdressCard
           adress="321 - Rua das Flores - Jardins..."
         />
-        
+
         <PaymentCard
           active
         />
