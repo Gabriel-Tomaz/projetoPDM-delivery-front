@@ -23,11 +23,11 @@ const Routes = () => {
         screenOptions={{ headerShown: false }}
         initialRouteName="Home"
       >
-            {/* <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="Home" component={Home} />
             <Drawer.Screen name="Cardapio" component={Cardapio} />
             <Drawer.Screen name="Produtos" component={Product} />
             <Drawer.Screen name="Login" component={Login} />
-            <Drawer.Screen name="OrderHistory" component={OrderHistory} /> */}
+            <Drawer.Screen name="OrderHistory" component={OrderHistory} />
            <Drawer.Screen name="OrderDetails" component={OrderDetails} />
             <Drawer.Screen name="ShoppingBag" component={ShoppingBag} />
       </Drawer.Navigator>
