@@ -1,4 +1,4 @@
-import { Text, View} from "react-native";
+import { Text, View } from "react-native";
 
 import styles from "./style";
 
@@ -13,7 +13,7 @@ interface Props {
     textButton?: string
 }
 
-const SummaryValue = ({ textButton =''}: Props) => {
+const SummaryValue = ({ textButton }: Props) => {
     return (
         <View style={styles.containerValue}>
             <View style={styles.value}>
@@ -35,13 +35,16 @@ const SummaryValue = ({ textButton =''}: Props) => {
                 <Text style={styles.titleTotal}>R$114,50</Text>
             </View>
 
-            {textButton ?
+            <View style={{padding:15}}>
+                {textButton ?
 
-                <Button 
-                    title = {textButton}
-                />
+                    <Button
+                        title={textButton}
+                    />
 
-                : null}
+                    : null}
+            </View>
+
 
         </View>
 

@@ -9,25 +9,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#F8F9FA'
     },
     titleContainer:{
-        flexDirection: 'row',
-        alignContent:'center',
+        flexDirection:'row',
+        alignItems: 'center',
         height: 80, 
-        marginTop:40,
+        marginTop:25,
         borderBottomWidth: 2 ,
         borderStyle: 'solid',
         borderBottomColor: 'rgba(27, 27, 27, 0.1)'
     },
-    titleOrder: {
-        marginLeft:70,
+    title: {
+        marginLeft:100,
         color: '#1B1B1B',
-        fontSize: 25,
-        fontWeight:'bold',
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom:10
     },
     timestamp: {
-        marginLeft:70,
         color: '#6A7D8B',
-        fontSize: 13,
-        marginBottom:5
+        fontSize: 12
     },
     itensContainer:{
         flexDirection: 'row',
@@ -44,8 +43,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         color: '#1B1B1B',
-        marginTop:20,
-        marginBottom:5
+        marginTop: 18
     }
    
 });

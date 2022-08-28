@@ -2,6 +2,7 @@ import { Text, View, Image } from "react-native";
 import styles from "./style";
 
 import monsterBurger from '../../../assets/icons/monster_burger.png';
+import Colors from "../../styles/colors";
 
 interface Props {
     product?: string;
@@ -15,7 +16,7 @@ const OrderDetailsCard = ({ product, totalOrder, amount }: Props) => {
 
                 <View style={styles.details}>
                     <View style={styles.fistCard}>
-                        <Image style={{width:100, height:100}}
+                        <Image style={{width:95, height:95}}
                             source={monsterBurger}
                         />
                         <View style={styles.text}>
@@ -25,8 +26,8 @@ const OrderDetailsCard = ({ product, totalOrder, amount }: Props) => {
                     </View>
 
                     <View style={styles.secondCard}>
-                        <Text>Qnt.</Text>
-                        <Text>{amount}</Text>
+                        <Text style={{color: Colors.DeepYellow[6]}}>Qnt.</Text>
+                        <Text style={styles.amountText}>{amount}</Text>
                     </View>
 
                 </View>
