@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://navedex-api.herokuapp.com/v1",
+  baseURL: "http://localhost:3000",
 });
 
 export default api;
