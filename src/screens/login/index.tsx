@@ -27,12 +27,12 @@ const Login = () => {
     password: "",
   };
 
-  const SingupSchema = Yup.object().shape({
+  const SinginSchema = Yup.object().shape({
     email: Yup.string().email("Email invalido").required("Obrigatório"),
     password: Yup.string().min(8, "Senha invalida").required("Obrigatório"),
   });
 
-  const Singup = async (user: User) => {
+  const Singin = async (user: User) => {
     dispatch(
       auth(user, (err: any) => {
         if (err) {
@@ -68,8 +68,8 @@ const Login = () => {
         </View>
         <Formik
           initialValues={initialValues}
-          validationSchema={SingupSchema}
-          onSubmit={(values: User) => Singup(values)}
+          validationSchema={SinginSchema}
+          onSubmit={(values: User) => Singin(values)}
         >
           {({
             handleChange,
