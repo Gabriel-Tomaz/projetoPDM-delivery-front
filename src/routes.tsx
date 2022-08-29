@@ -28,7 +28,7 @@ const Routes = () => {
             <Drawer.Screen name="Produtos" component={Product} />
             <Drawer.Screen name="Login" component={Login} />
             <Drawer.Screen name="OrderHistory" component={OrderHistory} /> */}
-           <Drawer.Screen name="OrderDetails" component={OrderDetails} />
+           {/* <Drawer.Screen name="OrderDetails" component={OrderDetails} /> */}
             <Drawer.Screen name="ShoppingBag" component={ShoppingBag} />
       </Drawer.Navigator>
     </NavigationContainer>
