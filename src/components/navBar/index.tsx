@@ -31,6 +31,7 @@ const NavBar = () => {
               anchor={<Button onPress={openMenu}>  <Icon name="menu" style={{fontWeight: 'bold',
                   fontSize: 20}}/></Button>}>
             <Menu.Item onPress={() => goToPage('Home')} title="Home" />
+            <Menu.Item onPress={() => goToPage('Profile')} title="Profile" />
             <Menu.Item onPress={() => goToPage('Cardapio')} title="Cardápio" />
             <Menu.Item onPress={() => goToPage('Produtos')} title="Produtos" />
             <Menu.Item onPress={() => goToPage('')} title="Sacola" />
