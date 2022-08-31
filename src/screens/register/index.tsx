@@ -39,7 +39,7 @@ const Register = () => {
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
       }}
     >
-      <Header></Header>
+      <Header />
       <KeyboardAwareScrollView
         style={{
           padding: 18,
