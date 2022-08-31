@@ -1,8 +1,10 @@
-import { Text, View, Image } from "react-native";
+import { Text, View } from "react-native";
 import styles from "./style";
 
-import  Icon  from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/Feather";
 import StatusOrder from "../statusOrder";
+
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
     num_order?: string;
@@ -12,6 +14,13 @@ interface Props {
 }
 
 const OrderHistoryCard = ({ num_order, timestamp, status, totalOrder }: Props) => {
+
+    const navigation = useNavigation();
+
+    const openDetails = () => {
+        navigation.navigate('OrderDetails')
+    }
+
     return (
 
         <View style={styles.orderContainer}>
@@ -32,14 +41,15 @@ const OrderHistoryCard = ({ num_order, timestamp, status, totalOrder }: Props) =
                     </View>
 
                     <View style={styles.secondCard}>
-                        
-                        <StatusOrder 
+
+                        <StatusOrder
                             status={status}
                         />
                         <Icon name="arrow-right" size={38}
-                             style={
+                            style={
                                 { color: '#FFA200' }}
-                        ></Icon>
+                            onPress={openDetails}
+                        />
                     </View>
 
                 </View>

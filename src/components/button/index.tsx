@@ -1,27 +1,30 @@
 import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { Icon } from "@rneui/base";
 
+
 import styles from "./style";
 import Colors from "../../styles/colors";
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
   link?: boolean;
+  backgroud?: string;
+  colorText?: string;
 }
 
-const Button = ({ title, link, ...rest }: ButtonProps) => {
+const Button = ({ title, link, backgroud, colorText, ...rest }: ButtonProps) => {
   return (
     <TouchableOpacity
       style={{
         ...styles.container,
-        backgroundColor: link ? "transparent" : Colors.DeepYellow[6],
+        backgroundColor: link || backgroud ? backgroud : Colors.DeepYellow[6],
       }}
       {...rest}
     >
       <Text
         style={{
           ...styles.titleButton,
-          color: link ? Colors.DeepYellow[6] : Colors.Neutral.white,
+          color: link  || colorText ? colorText : Colors.Neutral.white,
         }}
       >
         {title}
@@ -36,6 +39,7 @@ const Button = ({ title, link, ...rest }: ButtonProps) => {
       ) : null}
     </TouchableOpacity>
   );
-};
+
+}
 
 export default Button;

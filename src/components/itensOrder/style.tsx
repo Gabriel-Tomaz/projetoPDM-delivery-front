@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { color } from "react-native-reanimated";
 import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
@@ -11,7 +10,7 @@ const styles = StyleSheet.create({
         maxWidth:355,
         borderBottomWidth: 2 ,
         borderStyle: 'solid',
-        borderBottomColor: Colors.Gray[2],
+        borderBottomColor: Colors.Gray[2]
     },
     details: {
         flexDirection: 'row',
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
     },
     fistCard: {
         flexDirection: 'row',
-        width:270
+        width:250
     },
     text: {
         marginLeft: 10,
@@ -33,18 +32,36 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     secondCard: {
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        width:50
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        //width:105,
+        //height:50,
+    }, 
+    most :{
+        backgroundColor: '#FFA200',
+        padding:9,
+        alignContent:'center',
+        borderBottomRightRadius: 4,
+        borderTopRightRadius: 4
+       
     },
-    amountText:{
-        color: Colors.DeepYellow[6], 
-        borderWidth: 1 ,
-        borderStyle: 'solid', 
-        borderColor: Colors.Gray[2], 
-        borderRadius: 4, 
-        padding:4
+    minus :{
+        backgroundColor: Colors.Gray[1],
+        padding:9,
+        borderBottomLeftRadius: 4,
+        borderTopLeftRadius: 4
+    },
+    textQnt:{
+        padding:6,
+        color: '#FFA200',
+        fontSize:16,
+        fontWeight: 'bold',
+        borderColor: '#F2F4F5',
+        borderWidth:1,
+        borderStyle: 'solid',
     }
+        
    
 });
 
