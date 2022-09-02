@@ -21,11 +21,11 @@ export function CalendarOrder() {
   const route = useRoute();
 
 
-  /* function handleConfirmDate() {
+  function handleConfirmDate() {
      navigation.navigate('OrderHistory', {
        dates: Object.keys(datasMarcadas)
      });
-   } */
+   }
   
   {/*function handleBack(){
     navigation.goBack();
@@ -99,7 +99,7 @@ export function CalendarOrder() {
       <View>
         <Button
           title="Confirmar"
-          //onPress={handleConfirmDate}
+          onPress={handleConfirmDate}
         />
       </View>
     </View>
