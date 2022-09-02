@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, TouchableOpacity, Text } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useNavigation } from "@react-navigation/native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 
 import Input from "../../components/input";
 import Button from "../../components/button";
@@ -10,23 +12,27 @@ import Colors from "../../styles/colors";
 import { auth } from "../../store/actions/auth.actions";
 import { useAppDispatch } from "../../hooks";
 import { User } from "../../types/user";
+import { RootStackParamList } from "../RootStackPrams";
 
 import Logo from "../../../assets/logo_login.png";
 
+type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
+
 const Login = () => {
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<authScreenProp>();
 
   const initialValues: User = {
     email: "",
     password: "",
   };
 
-  const SingupSchema = Yup.object().shape({
+  const SinginSchema = Yup.object().shape({
     email: Yup.string().email("Email invalido").required("Obrigatório"),
     password: Yup.string().min(8, "Senha invalida").required("Obrigatório"),
   });
 
-  const Singup = async (user: User) => {
+  const Singin = async (user: User) => {
     dispatch(
       auth(user, (err: any) => {
         if (err) {
@@ -62,8 +68,8 @@ const Login = () => {
         </View>
         <Formik
           initialValues={initialValues}
-          validationSchema={SingupSchema}
-          onSubmit={(values: User) => Singup(values)}
+          validationSchema={SinginSchema}
+          onSubmit={(values: User) => Singin(values)}
         >
           {({
             handleChange,
@@ -102,6 +108,13 @@ const Login = () => {
             </View>
           )}
         </Formik>
+        <View style={{marginTop: 24}}>
+          <Button
+            title="Cadastre-se"
+            onPress={() => navigation.navigate("Register")}
+            link
+          />
+        </View>
       </View>
     </KeyboardAwareScrollView>
   );
