@@ -13,6 +13,7 @@ import Cardapio from "./screens/cardapio";
 import OrderDetails from "./screens/orderDetails";
 import OrderHistory from "./screens/orderHistory";
 import Profile from "./screens/profile";
+import { CalendarOrder } from "./screens/calendarOrder";
 
 const Routes = () => {
   const Drawer = createDrawerNavigator();
@@ -24,14 +25,13 @@ const Routes = () => {
         screenOptions={{ headerShown: false }}
         initialRouteName="Home"
       >
-        <Drawer.Screen name="Home" component={Home} />
+       {/*  <Drawer.Screen name="Home" component={Home} />
         <Drawer.Screen name="Produtos" component={Product} />
         <Drawer.Screen name="Login" component={Login} />
         <Drawer.Screen name="Register" component={Register} />
         <Drawer.Screen name="Profile" component={Profile} />
-        <Drawer.Screen name="Cardapio" component={Cardapio} />
-        <Drawer.Screen name="Produtos" component={Product} />
-        <Drawer.Screen name="Login" component={Login} />
+        <Drawer.Screen name="Cardapio" component={Cardapio} /> */}
+        <Drawer.Screen name="Calendar" component={CalendarOrder} />
         <Drawer.Screen name="OrderHistory" component={OrderHistory} />
         <Drawer.Screen name="OrderDetails" component={OrderDetails} />
         <Drawer.Screen name="ShoppingBag" component={ShoppingBag} />
