@@ -7,10 +7,11 @@ import StatusOrder from "../statusOrder";
 import { useNavigation } from '@react-navigation/native';
 
 interface Props {
-    num_order?: string;
+    num_order?: number;
     timestamp?: string;
+    date: string;
     status?: string;
-    totalOrder?: string;
+    totalOrder?: number;
 }
 
 const OrderHistoryCard = ({ num_order, timestamp, status, totalOrder }: Props) => {
