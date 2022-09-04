@@ -1,4 +1,3 @@
-import { PayloadAction } from "@reduxjs/toolkit";
 import * as actions from "../actions/auth.actions";
 
 const initialState = {

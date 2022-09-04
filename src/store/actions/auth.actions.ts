@@ -11,9 +11,9 @@ export const auth = (user: User, callback: CallableFunction): any => {
     dispatch({ type: AUTH });
 
     try {
-      const response = await api.post('/login', user);
+      const response = await api.post('user/login', user);
 
-      if (response.status === 200) {
+      if (response.data) {
         dispatch({ type: AUTH_SUCCESS, payload: response.data });
         return callback && callback(null, response.data);
       } else {
