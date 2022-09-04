@@ -14,8 +14,10 @@ export const auth = (user: User, callback: CallableFunction): any => {
       const response = await api.post('user/login', user);
 
       if (response.data) {
-        dispatch({ type: AUTH_SUCCESS, payload: response.data });
-        return callback && callback(null, response.data);
+        const data = response.data;
+        
+        dispatch({ type: AUTH_SUCCESS, payload: data });
+        return callback && callback(null, data);
       } else {
         dispatch({ type: AUTH_FAILED });
         return callback && callback(new Error("Erro na autenticação"));
