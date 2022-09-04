@@ -1,95 +1,54 @@
 import React from "react";
-import { View, Text, Image, useWindowDimensions } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import burger from '../../../assets/burger-login.png';
-import Colors from "../../styles/colors";
-import NavBar from "../../components/navBar";
-import Logo from "../../../assets/logo_login.png";
-import styles from "./style";
 import Button from "../../components/button";
-import Icon from "react-native-vector-icons/Feather";
+import Logo from "../../../assets/logo_login.png";
+import Ilustration from "../../../assets/welcome.png";
+import { RootStackParamList } from "../RootStackPrams";
+type authScreenProp = StackNavigationProp<RootStackParamList, "Register">;
 
+import styles from "./style";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 const Welcome = () => {
-    const navigation = useNavigation();
-    const { width, height } = useWindowDimensions();
+  const navigation = useNavigation<authScreenProp>();
 
-    const openLogin = () => {
-        navigation.navigate('Login')
-    }
-
-    const openCardapio = () => {
-        navigation.navigate('Cardapio')
-    }
-
-    return (
-        <View>
-            {/* <NavBar /> */}
-
-            <View style={[styles.container, { width, height: height / 2 }]}>
-                <View style={[styles.containerHeader, { width }]}>
-                    <Image source={Logo}
-                           style={{ tintColor: Colors.Neutral.white }} />
-                </View>
-            </View>
-
-            <View style={[styles.card]}>
-                <Image
-                    style={[styles.img, { position: "relative", height: 300, width: 300 }]}
-                    source={burger}
-                />
-
-                <View style={[styles.escopo]}>
-                    <Text style={styles.escopoTitle}>
-                        O hambúger mais {'\n'}
-                        delicioso da sua cidade
-                    </Text>
-
-                    <Text
-                        style={styles.escopoText}>
-                        Logou
-                        <Icon name="arrow-right" size={18}
-                              style={
-                                  { color: '#FFA200', letterSpacing: 15 }}
-                        />
-                        Pediu
-
-                        <Icon name="arrow-right" size={18}
-                              style={
-                                  { color: '#FFA200', letterSpacing: 15 }}
-                        />
-
-                        Chegou
-                    </Text>
-
-                </View>
-
-            </View>
-
-            <View style={styles.cardButton}>
-                <Button
-                    title="Fazer Login"
-                    onPress={openLogin}
-                />
-            </View>
-
-            <View style={styles.cardButton}>
-                <Button
-                    title="Ver Cardápio"
-                    backgroud='#FFFFFF'
-                    colorText="#FFA200"
-                    onPress={openCardapio}
-                />
-            </View>
-
-
-
-
-
-
+  return (
+    <View style={styles.container}>
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={styles.imageContainer}>
+          <Image source={Logo} />
         </View>
-    );
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            marginVertical: 52,
+          }}
+        >
+          <View style={{ marginBottom: 24 }}>
+            <Image source={Ilustration} />
+          </View>
+          <Text style={styles.title}>
+            O melhor delivery da sua Cidade. Logou, pediu, chegou!
+          </Text>
+        </View>
+        <View style={{ marginBottom: 24 }}>
+          <Button
+            title="Fazer meu pedido"
+            type="primary"
+            onPress={() => navigation.navigate("Login")}
+          />
+        </View>
+        <Button
+          title="Junte-se a nós! Cadastre-se"
+          onPress={() => navigation.navigate("Register")}
+          type="secondary"
+        />
+      </View>
+    </View>
+  );
 };
 
 export default Welcome;

@@ -95,24 +95,24 @@ const Login = () => {
                 onChange={handleChange("senha")}
                 onBlur={handleBlur("senha")}
                 value={values.senha}
-                error={
-                  errors.senha && touched.senha
-                    ? errors.senha
-                    : undefined
-                }
+                error={errors.senha && touched.senha ? errors.senha : undefined}
               />
 
               <View style={{ marginTop: 8 }}>
-                <Button title="Login" onPress={() => handleSubmit()} />
+                <Button
+                  title="Login"
+                  onPress={() => handleSubmit()}
+                  type="primary"
+                />
               </View>
             </View>
           )}
         </Formik>
-        <View style={{marginTop: 24}}>
+        <View style={{ marginTop: 24 }}>
           <Button
             title="Cadastre-se"
             onPress={() => navigation.navigate("Register")}
-            link
+            type="link"
           />
         </View>
       </View>

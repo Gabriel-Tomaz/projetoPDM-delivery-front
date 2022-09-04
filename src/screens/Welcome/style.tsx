@@ -1,57 +1,51 @@
-import { StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 
+import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
-    container:{
-        alignItems: 'center',
-        borderBottomWidth: 2 ,
-        borderStyle: 'solid',
-        borderBottomColor: 'rgba(27, 27, 27, 0.1)',
-        backgroundColor: '#FB9400',
-    },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: Colors.Neutral.white,
+    paddingHorizontal: 18,
+    alignContent: 'center'
+  },
+  imageContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  title: {
+    fontWeight: "600",
+    fontSize: 20,
+    textAlign: "center",
+    marginTop: 12,
+    lineHeight: 32,
+  },
+  card: {
+    height: 220,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-    containerHeader: {
-        flexDirection: "row",
-        alignItems: 'center',
-        justifyContent: "space-around",
-        marginTop:80,
-    },
+  img: {
+    justifyContent: "center",
+    marginTop: -250,
+  },
 
-    card: {
-        height: 220,
-        alignItems: 'center',
-        justifyContent: "center",
-    },
+  escopo: {
+    justifyContent: "center",
+  },
+  escopoText: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 15,
+    color: "red",
+  },
 
-    img: {
-        justifyContent: "center",
-        marginTop: -250,
-
-    },
-
-    escopo: {
-        justifyContent: 'center',
-    },
-
-    escopoTitle: {
-        fontWeight: 'bold', 
-        fontSize: 26, 
-        textAlign: 'center', 
-        marginTop:12
-    },
-
-    escopoText:{
-        fontSize: 18, 
-        textAlign: 'center', 
-        margin:15
-    },
-    
-    cardButton: {
-       margin:20,
-       marginBottom: 2
-        
-    }
-
+  cardButton: {
+    margin: 20,
+    marginBottom: 2,
+  },
 });
 
 export default styles;

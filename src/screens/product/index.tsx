@@ -101,7 +101,7 @@
                   </View>
 
                       <View style={{paddingTop: 40,}}>
-                          <Button title="Adicionar à Sacola"  onPress={openScreen} />
+                          <Button type="primary" title="Adicionar à Sacola"  onPress={openScreen} />
                       </View>
                   </View>
 
