@@ -1,4 +1,4 @@
-import * as actions from "../actions/auth.actions";
+import * as actions from "../actions/user.actions";
 
 const initialState = {
   token: "",

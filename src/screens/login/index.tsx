@@ -9,7 +9,7 @@ import { DrawerNavigationProp } from "@react-navigation/drawer";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import Colors from "../../styles/colors";
-import { auth } from "../../store/actions/auth.actions";
+import { auth } from "../../store/actions/user.actions";
 import { useAppDispatch } from "../../hooks";
 import { User } from "../../types/user";
 import { RootStackParamList } from "../RootStackPrams";
