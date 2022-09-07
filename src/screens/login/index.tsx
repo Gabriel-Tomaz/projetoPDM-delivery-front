@@ -11,7 +11,7 @@ import Button from "../../components/button";
 import Colors from "../../styles/colors";
 import { auth } from "../../store/actions/user.actions";
 import { useAppDispatch } from "../../hooks";
-import { User } from "../../types/user";
+import { User } from "../../@types/user";
 import { RootStackParamList } from "../RootStackPrams";
 
 import Logo from "../../../assets/logo_login.png";

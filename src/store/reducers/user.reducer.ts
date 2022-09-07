@@ -9,6 +9,7 @@ const initialState = {
 
 const reducer = (state = initialState, action: any) => {
   switch (action.type) {
+    //Login
     case actions.AUTH:
       return {
         ...state,
@@ -18,13 +19,31 @@ const reducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
-        ...action.payload
+        ...action.payload,
       };
     case actions.AUTH_FAILED:
       return {
         ...state,
         loading: false,
-        ...action
+        ...action,
+      };
+    //Cadastro
+    case actions.REGISTER:
+      return {
+        ...state,
+        loading: true,
+      };
+    case actions.REGISTER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        ...action.payload,
+      };
+    case action.REGISTER_FAILED:
+      return {
+        ...state,
+        loading: false,
+        ...action,
       };
     default:
       return state;
