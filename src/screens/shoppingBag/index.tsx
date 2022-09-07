@@ -28,13 +28,28 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
     preco_total: 0
   }]);
 
- 
-  const goBackProduct = (item: any) => {
-        navigation.navigate('Produtos', {
-            produto : item
-        });
-    }
+  const [total, setTotal] = useState(0);
 
+
+  const goBackProduct = (item: any) => {
+    navigation.navigate('Produtos', {
+      produto: item
+    });
+  }
+
+  let sum = 0
+  const subTotal = () => {
+    productBad.map(d => {
+      sum = (sum + d.preco_total)
+    })
+    return sum
+  }
+
+  const frete = () => {
+    let frete = sum + 6.00
+    return frete
+
+  }
 
   useEffect(() => {
     const searchProductBag = async () => {
@@ -104,8 +119,8 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
       />
 
       <SummaryValue
-        subtotal={productBad[0].preco_total}
-        total={productBad[0].preco_total + 6.00}
+        subtotal={subTotal()}
+        total={frete()}
         textButton="Continuar"
 
       />

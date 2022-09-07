@@ -37,7 +37,19 @@ const OrderDetails = ({ num_order, totalItens }: OrderDetailsProps) => {
   }]);
 
 
-  
+  let sum = 0
+  const subTotal = () => {
+    orderDetails.map(d => {
+      sum = (sum + d.preco_produto)
+    })
+    return sum
+  }
+
+  const frete = () => {
+    let frete = sum + 6.00
+    return frete
+
+  }
 
   useEffect(() => {
     const searchOrders = async () => {
@@ -49,17 +61,9 @@ const OrderDetails = ({ num_order, totalItens }: OrderDetailsProps) => {
     searchOrders();
   }, []);
 
-
-
-  /* 
-    useEffect(() => {
-      console.log(orderDetails);
-  
-    }, [orderDetails]); */
-
   return (
     <ScrollView>
-      <View style={{ flex: 1, justifyContent: "center", padding: 18, backgroundColor: '#F8F9FA' }}>
+      <View style={{ flex: 1, justifyContent: "center", padding: 18, backgroundColor: Colors.Neutral.white }}>
 
         <View style={styles.titleContainer}>
           <Icon name="arrow-left"
@@ -110,8 +114,8 @@ const OrderDetails = ({ num_order, totalItens }: OrderDetailsProps) => {
 
         <SummaryValue
           textButton=''
-          subtotal={0}
-          total={0}
+          subtotal={subTotal()}
+          total={frete()}
         />
 
       </View>

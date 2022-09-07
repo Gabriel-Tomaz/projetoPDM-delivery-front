@@ -46,7 +46,7 @@ const OrderHistory = () => {
 
   return (
 
-    <View style={{justifyContent: "center", padding: 8, backgroundColor: '#F8F9FA' }}>
+    <View style={{justifyContent: "center", padding: 8, backgroundColor: Colors.Neutral.white }}>
 
       <View style={styles.titleContainer}>
         <Icon name="arrow-left"
