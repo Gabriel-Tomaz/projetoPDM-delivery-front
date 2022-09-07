@@ -3283,7 +3283,7 @@
   "resolved" "https://registry.npmjs.org/dag-map/-/dag-map-1.0.2.tgz"
   "version" "1.0.2"
 
-"date-fns@^2.29.1":
+"date-fns@^2.29.2":
   "integrity" "sha512-0VNbwmWJDS/G3ySwFSJA3ayhbURMTJLtwM2DTxf9CWondCnh6DTNlO9JgRSq6ibf4eD0lfMJNBxUdEAHHix+bA=="
   "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.29.2.tgz"
   "version" "2.29.2"
@@ -6887,7 +6887,7 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
 
-"react-native-calendars@^1.1287.0":
+"react-native-calendars@^1.1288.2":
   "integrity" "sha512-GzQ8+qeMfICms8LjMov+zH4Ne4fy/gHQbXjUfWiR/fqs0NqtIxYYGyujj9bObqXSH/ZRQafmJVKUc4Yv2F5tvA=="
   "resolved" "https://registry.npmjs.org/react-native-calendars/-/react-native-calendars-1.1288.2.tgz"
   "version" "1.1288.2"

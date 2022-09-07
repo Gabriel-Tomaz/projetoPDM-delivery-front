@@ -8,13 +8,12 @@ import { useNavigation } from '@react-navigation/native';
 
 interface Props {
     num_order?: number;
-    timestamp?: string;
     date: string;
     status?: string;
     totalOrder?: number;
 }
 
-const OrderHistoryCard = ({ num_order, timestamp, status, totalOrder }: Props) => {
+const OrderHistoryCard = ({num_order, status, totalOrder}: Props) => {
 
     const navigation = useNavigation();
 
@@ -32,12 +31,12 @@ const OrderHistoryCard = ({ num_order, timestamp, status, totalOrder }: Props) =
                     <View style={styles.firstCard}>
                         <View>
                             <Text style={styles.title}>Pedido #{num_order}</Text>
-                            <Text style={styles.timestamp}>{timestamp}</Text>
+                           
                         </View>
 
                         <View>
                             <Text style={styles.totalTitle}>Total</Text>
-                            <Text style={styles.total}>{totalOrder}</Text>
+                            <Text style={styles.total}>R${totalOrder}</Text>
                         </View>
                     </View>
 

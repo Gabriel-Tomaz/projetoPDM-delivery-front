@@ -31,10 +31,11 @@ const Routes = () => {
         <Drawer.Screen name="Register" component={Register} />
         <Drawer.Screen name="Profile" component={Profile} />
         <Drawer.Screen name="Cardapio" component={Cardapio} /> */}
-        <Drawer.Screen name="Calendar" component={CalendarOrder} />
+       <Drawer.Screen name="CalendarOrder" component={CalendarOrder} />
         <Drawer.Screen name="OrderHistory" component={OrderHistory} />
-        <Drawer.Screen name="OrderDetails" component={OrderDetails} />
+        <Drawer.Screen name="OrderDetails" component={OrderDetails} /> 
         <Drawer.Screen name="ShoppingBag" component={ShoppingBag} />
+        <Drawer.Screen name="Produtos" component={Product} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

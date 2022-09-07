@@ -2,12 +2,6 @@ import { StyleSheet } from "react-native";
 import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
-    orderDetails: {
-        flex: 1, 
-        justifyContent: "center", 
-        padding: 18, 
-        backgroundColor: '#F8F9FA'
-    },
     titleContainer:{
         flexDirection: 'row',
         alignContent:'center',
