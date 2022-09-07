@@ -8,6 +8,7 @@ export declare  global {
             Cardapio: undefined,
             OrderHistory:undefined,
             OrderDetails: undefined,
+
         }
     }
 }

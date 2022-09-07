@@ -40,7 +40,7 @@
         }
 
         const openScreen = () => {
-            navigation.navigate('Login')
+            navigation.navigate('')
         }
 
 
