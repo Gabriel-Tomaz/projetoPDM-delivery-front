@@ -3,32 +3,51 @@ import { View, SafeAreaView, Platform, StatusBar } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useNavigation } from "@react-navigation/native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 
+import { useAppDispatch } from "../../hooks";
+import { register } from "../../store/actions/user.actions";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import Colors from "../../styles/colors";
-import { RegisterUser } from "../../types/user";
+import { User } from "../../@types/user";
 import Header from "../../components/header";
+import { RootStackParamList } from "../RootStackPrams";
+
+type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
 
 const Register = () => {
-  const initialValues: RegisterUser = {
+  const dispatch = useAppDispatch();
+  const navigation = useNavigation<authScreenProp>();
+
+  const initialValues: User = {
     email: "",
-    name: "",
-    password: "",
+    nome: "",
+    senha: "",
   };
 
   const SingupSchema = Yup.object().shape({
-    name: Yup.string()
+    nome: Yup.string()
       .min(3, "Informe um nome válido")
       .required("Campo obrigatório"),
     email: Yup.string().email("Email invalido").required("Campo obrigatório"),
-    password: Yup.string()
+    senha: Yup.string()
       .min(8, "Senha invalida")
       .required("Campo obrigatório"),
   });
 
-  const Singup = (user: RegisterUser) => {
-    console.log(user);
+  const Singup = (user: User) => {
+    dispatch(
+      register(user, (err: any) => {
+        if (err) {
+          console.log("erro", err);
+        } else {
+          console.log('Cadastrado!');
+          navigation.navigate("Login");
+        }
+      })
+    );
   };
 
   return (
@@ -52,7 +71,7 @@ const Register = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={SingupSchema}
-            onSubmit={(values: RegisterUser) => Singup(values)}
+            onSubmit={(values: User) => Singup(values)}
           >
             {({
               handleChange,
@@ -64,12 +83,12 @@ const Register = () => {
             }) => (
               <View>
                 <Input
-                  label="Name"
+                  label="Nome"
                   placeholder="Digite seu nome"
-                  onChange={handleChange("name")}
-                  onBlur={handleBlur("name")}
-                  value={values.name}
-                  error={errors.name && touched.name ? errors.name : undefined}
+                  onChange={handleChange("nome")}
+                  onBlur={handleBlur("nome")}
+                  value={values.nome}
+                  error={errors.nome && touched.nome ? errors.nome : undefined}
                 />
                 <Input
                   label="Email"
@@ -85,13 +104,11 @@ const Register = () => {
                   label="Senha"
                   placeholder="Digite sua senha"
                   password
-                  onChange={handleChange("password")}
-                  onBlur={handleBlur("password")}
-                  value={values.password}
+                  onChange={handleChange("senha")}
+                  onBlur={handleBlur("senha")}
+                  value={values.senha}
                   error={
-                    errors.password && touched.password
-                      ? errors.password
-                      : undefined
+                    errors.senha && touched.senha ? errors.senha : undefined
                   }
                 />
 
