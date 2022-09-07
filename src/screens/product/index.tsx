@@ -1,39 +1,42 @@
     import React from "react";
     import {View, Text, ScrollView, Image, useWindowDimensions, TouchableOpacity} from "react-native";
-    import { useNavigation } from '@react-navigation/native';
-
-    import monster_burger from '../../../assets/icons/monster_burger.png';
+    import {useNavigation, useRoute} from '@react-navigation/native';
     import Icon from 'react-native-vector-icons/Feather';
 
     import styles from "./style";
     import Title from "../../components/title";
     import Colors from "../../styles/colors";
     import Button from "../../components/button";
-    import NavBar from "../../components/navBar";
+
+    interface Params{
+        id: number,
+        nome: string,
+        descricao: string,
+        preco: number,
+        img: string,
+    }
 
     const Product = () => {
         const navigation = useNavigation();
+        const route = useRoute();
+        const {produto} = route.params as Params;
 
-        const product = {
-            name: "Golden Burger",
-            description:" 2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal.",
-            price: 25.35,
-        }
         const {width, height } = useWindowDimensions();
-        const [countPrice, setCountPrice] = React.useState(product.price);
+        const [countPrice, setCountPrice] = React.useState(produto.preco);
         const [amount, setAmount] = React.useState(1);
 
         const handleCountMore = () => {
-            setAmount(amount + 1);
-            setCountPrice(countPrice + product.price);
+            console.log(amount)
+            setAmount(amount+1);
+            let preco = countPrice + produto.preco;
+            setCountPrice(preco);
         }
 
         const handleCountLess = () => {
             if(amount > 1){
                 setAmount(amount - 1);
-                setCountPrice(countPrice - product.price);
+                setCountPrice(countPrice - produto.preco);
             }
-            console.log( countPrice + amount)
         }
 
         const openScreen = () => {
@@ -42,7 +45,7 @@
 
 
         React.useEffect(() => {
-            setCountPrice(product.price);
+            setCountPrice(produto.preco);
         }, [])
 
             return (
@@ -59,20 +62,21 @@
                   <View style={[styles.card, {width, height: height/2}]}>
                       <Image
                           style={[styles.img, {position: "relative", height: 300, width: 300}]}
-                          source={monster_burger}
+                          source={{uri:produto.img}}
                       />
                       <View style={[styles.escopo, {width: width}]}>
-                          <Text style={{fontWeight: 'bold', fontSize: 24,  marginLeft:20,}}>
-                              {product.name}
+                          <Text style={{fontWeight: 'bold', fontSize: 24,  marginLeft:20,marginTop:20}}>
+                              {produto.nome}
                           </Text>
 
-                      </View>
+
                       <View style={{width: width}}>
                           <Text style={styles.line}></Text>
                       </View>
+                      </View>
                       <View style={{width: width}}>
                           <Text style={[styles.description, {color: Colors.Gray["5"]}]}>
-                              {product.description}
+                              {produto.descricao}
                           </Text>
                       </View>
 
@@ -82,7 +86,7 @@
                       <View style={[styles.secondCard, {width}]}>
                          <View style={{flexDirection: 'row'}}>
                              <TouchableOpacity
-                                 style={styles.minus}
+                                 style={styles.minus}  onPress={handleCountLess}
                              >
                                  <Text style={{color: Colors.Gray[6]}}> - </Text>
                              </TouchableOpacity>
@@ -90,7 +94,7 @@
                              <Text style={styles.textQnt}>{amount}</Text>
 
                              <TouchableOpacity
-                                 style={styles.most}
+                                 style={styles.most} onPress={handleCountMore}
                              >
                                  <Text style={{color: Colors.Neutral.white}}> + </Text>
                              </TouchableOpacity>

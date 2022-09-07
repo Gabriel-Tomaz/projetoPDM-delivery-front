@@ -17,13 +17,14 @@ import {User} from "../../types/user";
 import {useAppDispatch} from "../../hooks";
 import api from "../../service/api";
 import {auth} from "../../store/actions/auth.actions";
+import {useNavigation} from "@react-navigation/native";
 
 type IResult = {
   uri: string;
 }
 
 const Profile: React.FC = () => {
-
+  const navigation = useNavigation();
   const [imagesURI, setImagesURI] = React.useState<string[]>([]);
 
   const [user, setUser] = React.useState([{
@@ -50,21 +51,16 @@ const Profile: React.FC = () => {
 
 
   React.useEffect(() => {
-    setImagesURI([...imagesURI, user[0].img]);
-    setName(user[0].nome);
-    setEmail(user[0].email);
-
+    if(user[0] != undefined) {
+      setImagesURI([...imagesURI, user[0].img]);
+      setName(user[0].nome);
+      setEmail(user[0].email);
+    }
   }, [user]);
 
-  const handleSalve = async () => {
-    const dispatch = useAppDispatch();
-    const newUser = {id: 1, nome: name, email: email, senha: password, img: imagesURI[imagesURI.length - 1] }
-    console.log(newUser)
-    await api.put(`/userupdate`, newUser)
-        .then((resposta) => resposta.data)
-        .then((json) => setUser(json))
-        .catch((error) => console.error(error))
-  }
+  // const openScreen = () => {
+  //   navigation.navigate('Cardapio');
+  // }
 
   async function hanldeSelectImages() {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -84,29 +80,28 @@ const Profile: React.FC = () => {
       setImagesURI([...imagesURI, uri]);
     }
   }
+
   const initialValues: User = {
     id: 0,
-    email: '',
-    nome: '',
-    img: '',
-    senha: ''
+    email: "",
+    nome: "",
+    img: "",
+    senha: ""
   };
 
   const SingupSchema = Yup.object().shape({
-    email: Yup.string().email("Email invalido").required("Obrigatório"),
+    email: Yup.string().email("Email invalido"),
     senha: Yup.string().min(8, "Senha invalida").required("Obrigatório"),
   });
 
   const Singup = async (user: User) => {
-    dispatch(
-        auth(user, (err: any) => {
-          if (err) {
-            console.log("erro", err);
-          } else {
-            console.log("OK");
-          }
-        })
-    );
+    const newUser = {id: 1, nome: user.nome? user.nome : name, email: user.email ? user.email : email, senha: user.senha, img: imagesURI[imagesURI.length - 1] }
+    await api.put(`/userupdate`, newUser)
+                    .then((resposta) => resposta.data)
+                    .then((json) => setUser(json))
+                    .catch((error) => console.error(error))
+
+    navigation.navigate('Cardapio');
   };
 
   return (
@@ -147,31 +142,41 @@ const Profile: React.FC = () => {
                 onSubmit={(values: User) => Singup(values)}
             >
             {({
+                handleChange,
                 handleBlur,
-                errors,
+                handleSubmit,
+                values,
                 touched,
+                errors
               }) => (
                 <View>
-                    <Input label="Nome" onBlur={handleBlur("name")} value={name} onChange={item => setName(item)}/>
-                    <Input label="Email" onBlur={handleBlur("email")} value={email} onChange={item => setEmail(item)} />
-                    <Input label="Senha" placeholder="Digite nova senha" onBlur={handleBlur("password")} error={
+                    <Input label="Nome"
+                           placeholder={name}
+                           value={values.nome}
+                           onBlur={handleBlur("nome")}
+                           onChange={handleChange("nome")}/>
+
+                    <Input label="Email"
+                           placeholder={email}
+                           value={values.email}
+                           onBlur={handleBlur("email")}
+                           onChange={handleChange("email")}
+                           error={errors.email && touched.email ? errors.email : undefined}/>
+
+                    <Input label="Senha"
+                           placeholder="Digite sua senha ou uma nova"
+                           value={values.senha}
+                           onBlur={handleBlur("senha")}
+                           onChange={handleChange("senha")}
+                           error={
                       errors.senha && touched.senha
                           ? errors.senha
                           : undefined
-                    } onChange={item => setPassword(item)} />
+                    }/>
 
-              <View style={{ marginTop: 20 }}>
-              <Button title="Salvar dados" onPress={handleSalve} />
-              </View>
-
-              <View style={{ marginTop: 25 }}>
-              <Button
-              title="Deletar Conta"
-              backgroud= '#FFFFFF'
-              colorText="#FFA200"
-
-              />
-              </View>
+                <View style={{ marginTop: 20 }}>
+                  <Button title="Salvar dados" onPress={() => handleSubmit()} />
+                </View>
                 </View>
               )}
             </Formik>

@@ -8,31 +8,35 @@ import Title from "../../components/title";
 import Icon from "react-native-vector-icons/Feather";
 import monsterBurger from "../../../assets/icons/monster_burger.png";
 import {useNavigation} from "@react-navigation/native";
+import api from "../../service/api";
 
 const Cardapio = () => {
     const navigation = useNavigation();
     const {width, height } = useWindowDimensions();
-    const data = [
-        {
-        name: "Golden Tradicionanl",
-        description:" 2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal.",
-        price: 25.25,
-    },
-        {
-            name: "Golden ",
-            description:" 2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal.",
-            price: 25.25,
-        },
-        {
-            name: "Burger",
-            description:" 2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal.",
-            price: 25.25,
-        },
-    ]
+    const [product, setProduct] = React.useState([{
+        id: String,
+        nome: String,
+        img: String,
+        preco: Number,
+        descricao: String
+    }]);
 
-    const openScreen = () => {
-        navigation.navigate('Produtos');
+    const openScreen = (item: any) => {
+        navigation.navigate('Produtos', {
+            produto: item
+        });
     }
+
+    React.useEffect(() => {
+        const searchProduct = async() => {
+            await api.get(`/getproduct/`)
+                .then((resposta) => resposta.data)
+                .then((json) => setProduct(json))
+                .catch((error) => console.error(error))
+        }
+
+        searchProduct();
+    }, []);
   return (
 
       <View style={[styles.CardContainer, {
@@ -60,26 +64,26 @@ const Cardapio = () => {
                   </Text>
               </View>
 
-              <FlatList
-                  data={data}
-                  keyExtractor={item => item.name}
-                  numColumns={2} // Número de colunas
-                  renderItem={({ item })  => {
-                      return (
-                          <TouchableOpacity onPress={openScreen} style={[styles.cardProd, {width: width/2 - 40 }]}>
-                              <Image style={{ width: 95, height: 95 }}
-                                     source={monsterBurger}
-                              />
-                              <View style={styles.text}>
-                                  <Text >{item.name}</Text>
-                                  <Text style={styles.total}>R${item.price}</Text>
-                              </View>
-                          </TouchableOpacity>
+          { <FlatList
+              data={product}
+              keyExtractor={item => item.id.toString()}
+              numColumns={2}
+              renderItem={({item}) => {
+                  return (
+                      <TouchableOpacity onPress={(f) => openScreen(item)} style={[styles.cardProd, {width: width / 2 - 40}]}>
+                          <Image style={{width: 95, height: 95, marginTop: 10}}
+                                 source={{uri: item.img.toString()}}
+                          />
+                          <View style={styles.text}>
+                              <Text>{item.nome}</Text>
+                              <Text style={styles.total}>R${item.preco}</Text>
+                          </View>
+                      </TouchableOpacity>
 
-                      );
-                  }}
-              />
-
+                  );
+              }}
+          />
+          }
       </View>
   );
 };
