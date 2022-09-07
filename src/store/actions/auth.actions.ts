@@ -11,11 +11,13 @@ export const auth = (user: User, callback: CallableFunction): any => {
     dispatch({ type: AUTH });
 
     try {
-      const response = await api.post('/login', user);
+      const response = await api.post('user/login', user);
 
-      if (response.status === 200) {
-        dispatch({ type: AUTH_SUCCESS, payload: response.data });
-        return callback && callback(null, response.data);
+      if (response.data) {
+        const data = response.data;
+        
+        dispatch({ type: AUTH_SUCCESS, payload: data });
+        return callback && callback(null, data);
       } else {
         dispatch({ type: AUTH_FAILED });
         return callback && callback(new Error("Erro na autenticação"));

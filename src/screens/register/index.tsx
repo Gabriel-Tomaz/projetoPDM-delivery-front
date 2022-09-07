@@ -36,7 +36,7 @@ const Register = () => {
       style={{
         flex: 1,
         backgroundColor: Colors.Neutral.white,
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
       }}
     >
       <Header />
@@ -96,7 +96,11 @@ const Register = () => {
                 />
 
                 <View style={{ marginTop: 8 }}>
-                  <Button title="Cadaste-se" onPress={() => handleSubmit()} />
+                  <Button
+                    type="primary"
+                    title="Cadaste-se"
+                    onPress={() => handleSubmit()}
+                  />
                 </View>
               </View>
             )}

@@ -24,21 +24,21 @@ const Login = () => {
 
   const initialValues: User = {
     email: "",
-    password: "",
+    senha: "",
   };
 
   const SinginSchema = Yup.object().shape({
     email: Yup.string().email("Email invalido").required("Obrigatório"),
-    password: Yup.string().min(8, "Senha invalida").required("Obrigatório"),
+    senha: Yup.string().min(8, "Senha invalida").required("Obrigatório"),
   });
 
-  const Singin = async (user: User) => {
+  const Singin = (data: User) => {
     dispatch(
-      auth(user, (err: any) => {
+      auth(data, (err: any) => {
         if (err) {
           console.log("erro", err);
         } else {
-          console.log("OK");
+          navigation.navigate("Cardapio");
         }
       })
     );
@@ -92,27 +92,27 @@ const Login = () => {
                 label="Senha"
                 placeholder="Digite sua senha"
                 password
-                onChange={handleChange("password")}
-                onBlur={handleBlur("password")}
-                value={values.password}
-                error={
-                  errors.password && touched.password
-                    ? errors.password
-                    : undefined
-                }
+                onChange={handleChange("senha")}
+                onBlur={handleBlur("senha")}
+                value={values.senha}
+                error={errors.senha && touched.senha ? errors.senha : undefined}
               />
 
               <View style={{ marginTop: 8 }}>
-                <Button title="Login" onPress={() => handleSubmit()} />
+                <Button
+                  title="Login"
+                  onPress={() => handleSubmit()}
+                  type="primary"
+                />
               </View>
             </View>
           )}
         </Formik>
-        <View style={{marginTop: 24}}>
+        <View style={{ marginTop: 24 }}>
           <Button
             title="Cadastre-se"
             onPress={() => navigation.navigate("Register")}
-            link
+            type="link"
           />
         </View>
       </View>

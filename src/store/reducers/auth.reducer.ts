@@ -1,4 +1,3 @@
-import { PayloadAction } from "@reduxjs/toolkit";
 import * as actions from "../actions/auth.actions";
 
 const initialState = {
@@ -8,7 +7,7 @@ const initialState = {
   loading: false,
 };
 
-const reducer = (state = initialState, action: any, payload: any) => {
+const reducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actions.AUTH:
       return {
@@ -19,13 +18,13 @@ const reducer = (state = initialState, action: any, payload: any) => {
       return {
         ...state,
         loading: false,
-        ...payload,
+        ...action.payload
       };
     case actions.AUTH_FAILED:
       return {
         ...state,
         loading: false,
-        erros: { ...payload },
+        ...action
       };
     default:
       return state;

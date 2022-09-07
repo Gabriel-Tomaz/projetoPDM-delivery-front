@@ -39,6 +39,7 @@ const SummaryValue = ({ textButton, subtotal, total }: Props) => {
 
                     <Button
                         title={textButton}
+                        type='primary'
                     />
 
                     : null}

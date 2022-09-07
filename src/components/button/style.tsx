@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
   container: {
@@ -6,14 +7,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: 14,
-
+    padding: 16,
   },
   titleButton: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: "700",
     paddingHorizontal: 4,
-    lineHeight: 18
+    lineHeight: 24,
   },
 });
 

@@ -100,6 +100,7 @@ export function CalendarOrder() {
         <Button
           title="Confirmar"
           onPress={handleConfirmDate}
+          type='primary'
         />
       </View>
     </View>
