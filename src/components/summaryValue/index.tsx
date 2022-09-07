@@ -7,23 +7,22 @@ import Button from '../button'
 
 
 interface Props {
-    subtotal?: number,
-    frete?: number,
+    subtotal: number,
     total?: number,
     textButton?: string
 }
 
-const SummaryValue = ({ textButton }: Props) => {
+const SummaryValue = ({ textButton, subtotal, total }: Props) => {
     return (
         <View style={styles.containerValue}>
             <View style={styles.value}>
                 <Text style={styles.title}>Subtotal</Text>
-                <Text style={styles.total}>R$102,00</Text>
+                <Text style={styles.total}>R${subtotal}</Text>
             </View>
 
             <View style={styles.value}>
                 <Text style={styles.title}>Frete</Text>
-                <Text style={styles.total}>R$12,50</Text>
+                <Text style={styles.total}>R$6,00</Text>
             </View>
 
             <View>
@@ -32,7 +31,7 @@ const SummaryValue = ({ textButton }: Props) => {
 
             <View style={styles.value}>
                 <Text style={styles.title}>Total</Text>
-                <Text style={styles.titleTotal}>R$114,50</Text>
+                <Text style={styles.titleTotal}>R${total}</Text>
             </View>
 
             <View style={{padding:15}}>
@@ -40,15 +39,12 @@ const SummaryValue = ({ textButton }: Props) => {
 
                     <Button
                         title={textButton}
+                        type='primary'
                     />
 
                     : null}
             </View>
-
-
         </View>
-
-
     );
 };
 

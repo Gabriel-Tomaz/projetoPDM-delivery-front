@@ -6,7 +6,8 @@ export declare  global {
             Home: undefined,
             Profile: undefined,
             Cardapio: undefined,
-            OrderHistory:undefined,
+            CalendarOrder:undefined,
+            OrderHistory:{dates:string[]},
             OrderDetails: undefined,
 
         }

@@ -13,12 +13,10 @@ import Colors from "../../styles/colors";
 
 interface Props {
   num_order?: number;
-  timestamp?: string;
-  status?: string;
   totalItens?: number;
 }
 
-const OrderDetails = ({ num_order = 123, timestamp = '05/08/2022 - 15:26', status = 'Enviado', totalItens = 4 }: Props) => {
+const OrderDetails = ({ num_order = 123, totalItens = 4 }: Props) => {
   const array = [1, 2, 3, 4];
 
   return (
@@ -31,7 +29,6 @@ const OrderDetails = ({ num_order = 123, timestamp = '05/08/2022 - 15:26', statu
             style={{ fontSize: 35, color: Colors.DeepYellow[6] }} />
           <View style={{alignItems:'center'}}>
             <Text style={styles.titleOrder}>Pedido #{num_order}</Text>
-            <Text style={styles.timestamp}>{timestamp}</Text>
           </View>
         </View>
 

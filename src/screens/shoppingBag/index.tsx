@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 
 import styles from "./style";
@@ -12,8 +12,40 @@ interface Props {
   totalItens?: number;
 }
 
+interface ProductProps {
+  id: number;
+  nome?: string;
+  img: string;
+  preco: string;
+  descricao: string;
+}
+
+interface ArrayProduct {
+  product: Array<ProductProps>
+}
+
 const ShoppingBag = ({ totalItens = 4 }: Props) => {
-  const array = [1, 2, 3, 4];
+
+  const [product, setProduct] = useState([{
+    id: 0,
+    nome: '',
+    img: '',
+    preco: 0,
+    descricao: ''
+  }]);
+
+  // const [product, setProduct] = useState<ArrayProduct>();
+
+  useEffect(() => {
+    const searchBook = async() => {
+       await fetch("http://192.168.0.101:3000/getproduct")
+        .then((resposta) => resposta.json())
+        .then((json) => setProduct(json))
+        .catch((error) => console.error(error))
+    }
+
+    searchBook();
+  }, []);
 
   return (
 
@@ -22,7 +54,7 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
 
         <View style={styles.titleContainer}>
           <Icon name="arrow-left"
-          style={{fontSize: 35, color: Colors.DeepYellow[6]}} />
+            style={{ fontSize: 35, color: Colors.DeepYellow[6] }} />
           <Text style={styles.title}>Sacola</Text>
         </View>
 
@@ -31,22 +63,20 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
             <Text style={styles.itens}>{totalItens} itens</Text>
           </View>
           <View>
-          <Text style={styles.itens}>Entrega: 50-60min</Text>
+            <Text style={styles.itens}>Entrega: 50-60min</Text>
           </View>
         </View>
 
-        {array.map(d => (
+        {product ? product.map(d => (
           <ItensOrder
-            product="Monster Burguer"
-            totalOrder="25,50"
-            amount="01"
-            key={d}
+            product={d.nome}
+            price={d.preco}
+            img={d.img}
+            key={d.id}
           />
-        ))}
+        )) : ''}
 
-        <SummaryValue
-          textButton="Continuar"
-        />
+        
 
       </View>
     </ScrollView >

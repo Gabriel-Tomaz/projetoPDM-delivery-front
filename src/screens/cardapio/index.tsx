@@ -7,10 +7,12 @@ import styles from "./style";
 import Title from "../../components/title";
 import Icon from "react-native-vector-icons/Feather";
 import monsterBurger from "../../../assets/icons/monster_burger.png";
-import {useNavigation} from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 import api from "../../service/api";
 
 const Cardapio = () => {
+    const { user, token } = useSelector((state: any) => state.user);
     const navigation = useNavigation();
     const {width, height } = useWindowDimensions();
     const [product, setProduct] = React.useState([{
