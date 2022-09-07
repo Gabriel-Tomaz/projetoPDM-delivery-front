@@ -85,14 +85,13 @@ const Profile: React.FC = () => {
 
           </View>
           <View style={{ marginTop: 20 }}>
-            <Button title="Editar" />
+            <Button type='primary' title="Editar" />
           </View>
 
           <View style={{ marginTop: 25 }}>
             <Button
               title="Deletar Conta"
-              backgroud= '#FFFFFF'
-              colorText="#FFA200"
+              type='secondary'
 
             />
           </View>

@@ -6,8 +6,8 @@ import styles from "./style";
 
 import Logo from "../../../assets/header-logo.png";
 import Colors from "../../styles/colors";
-import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { RootStackParamList } from "../../screens/RootStackPrams";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 interface HeaderProps {
   title?: string;
@@ -17,7 +17,7 @@ interface HeaderProps {
   rightAction?: () => void;
 }
 
-type authScreenProp = DrawerNavigationProp<RootStackParamList, "Login">;
+type authScreenProp = StackNavigationProp<RootStackParamList, "Login">;
 
 const Header = ({
   title,
@@ -29,7 +29,7 @@ const Header = ({
 
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon
           name="arrow-back-ios"
           type="material"
