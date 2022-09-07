@@ -44,6 +44,46 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#1B1B1B',
         marginTop: 18
+    },
+    cardsDetails: {
+        flexDirection: "row",
+        borderRadius: 4,
+        paddingBottom:15,
+        paddingTop:15,
+        maxWidth:355,
+        borderBottomWidth: 2 ,
+        borderStyle: 'solid',
+        borderBottomColor: Colors.Gray[2]
+    },
+    details: {
+        flexDirection: 'row',
+        justifyContent:  'flex-start',
+        alignItems: 'center',
+        height:100,
+        width:325,
+    },
+    fistCard: {
+        flexDirection: 'row',
+        width:250
+    },
+    texto: {
+        marginLeft: 10,
+        justifyContent: 'center'
+    },
+    total: {
+        color: Colors.DeepYellow[6],
+        fontSize: 18
+    },
+    secondCard: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    }, 
+    btnEdit:{
+        color: Colors.Neutral.white, 
+        backgroundColor: Colors.DeepYellow[6], 
+        padding: 4, 
+        borderRadius: 4
     }
    
 });

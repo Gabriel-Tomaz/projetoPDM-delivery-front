@@ -9,6 +9,10 @@ import Product from "./screens/product";
 
 import Register from "./screens/register";
 import Home from "./screens/Home";
+import { CalendarOrder } from "./screens/calendarOrder";
+import OrderHistory from "./screens/orderHistory";
+import OrderDetails from "./screens/orderDetails";
+import ShoppingBag from "./screens/shoppingBag";
 
 const Routes = () => {
   const { token } = useSelector((state: any) => state.user);
@@ -33,6 +37,10 @@ const Routes = () => {
         >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Produtos" component={Product} />
+          <Stack.Screen name="ShoppingBag" component={ShoppingBag} />
+          <Stack.Screen name="CalendarOrder" component={CalendarOrder} />
+          <Stack.Screen name="OrderHistory" component={OrderHistory} />
+          <Stack.Screen name="OrderDetails" component={OrderDetails} />
         </Stack.Navigator>
       )}
     </NavigationContainer>
