@@ -22,7 +22,7 @@ const SummaryValue = ({ textButton, subtotal, total }: Props) => {
 
             <View style={styles.value}>
                 <Text style={styles.title}>Frete</Text>
-                <Text style={styles.total}>R$6,00</Text>
+                <Text style={styles.total}>R$6.00</Text>
             </View>
 
             <View>

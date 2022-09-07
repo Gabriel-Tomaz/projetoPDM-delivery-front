@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     },
     container:{
         flex:1,
-        backgroundColor: Colors.Gray[0]
+        backgroundColor: Colors.Neutral.white
     },
     header: {
        width:400,

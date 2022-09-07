@@ -5,10 +5,10 @@ import Colors from "../../styles/colors";
 const styles = StyleSheet.create({
     cardsDetails: {
         flexDirection: "row",
+        justifyContent:"center",
         borderRadius: 4,
         paddingBottom:15,
         paddingTop:15,
-        maxWidth:355,
         borderBottomWidth: 2 ,
         borderStyle: 'solid',
         borderBottomColor: Colors.Gray[2],
@@ -17,8 +17,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:  'flex-start',
         alignItems: 'center',
-        height:100,
-        width:325,
+ 
     },
     fistCard: {
         flexDirection: 'row',
