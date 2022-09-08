@@ -16,7 +16,6 @@ interface Props {
 const OrderHistoryCard = ({num_order, status, totalOrder}: Props) => {
 
     const navigation = useNavigation();
-
     const openDetails = () => {
         navigation.navigate('OrderDetails',{
             num_pedido: num_order 

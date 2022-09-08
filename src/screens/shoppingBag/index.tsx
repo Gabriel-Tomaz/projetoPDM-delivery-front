@@ -18,7 +18,7 @@ interface Props {
 
 const ShoppingBag = ({ totalItens = 4 }: Props) => {
   const navigation = useNavigation();
-  const { user } = useSelector((state: any) => state.user);
+  const user = useSelector((state: any) => state.user.user);
   const [productBad, setProductBag] = useState([{
     id_sacola: 0,
     id_produto: 0,

@@ -22,28 +22,28 @@
         const userLogin = useSelector((state: any) => state.user.user);
         const navigation = useNavigation();
         const route = useRoute();
-        const {id, img, nome, descricao, preco} = route.params as Params;
+        const {produto} = route.params as Params;
 
         const {width, height } = useWindowDimensions();
-        const [countPrice, setCountPrice] = React.useState(preco);
+        const [countPrice, setCountPrice] = React.useState(produto.preco);
         const [amount, setAmount] = React.useState(1);
 
         const handleCountMore = () => {
             console.log(amount)
             setAmount(amount+1);
-            let precoAtual = countPrice + preco;
-            setCountPrice(precoAtual);
+            let preco = countPrice + produto.preco;
+            setCountPrice(preco);
         }
 
         const handleCountLess = () => {
             if(amount > 1){
                 setAmount(amount - 1);
-                setCountPrice(countPrice - preco);
+                setCountPrice(countPrice - produto.preco);
             }
         }
 
         const handleCreateBag = async () => {
-            const bag = {id_produto: id, id_usuario: userLogin.id, quantidade: amount }
+            const bag = {id_produto: produto.id, id_usuario: userLogin.id, quantidade: amount }
             console.log(bag)
             await api.post(`/sacola`, bag)
                     .then((resposta) => resposta.data)
@@ -56,8 +56,9 @@
             navigation.navigate('Sacola')
         }
 
+
         React.useEffect(() => {
-            setCountPrice(preco);
+            setCountPrice(produto.preco);
         }, [])
 
             return (
@@ -74,11 +75,11 @@
                   <View style={[styles.card, {width, height: height/2}]}>
                       <Image
                           style={[styles.img, {position: "relative", height: 300, width: 300}]}
-                          source={{uri:img}}
+                          source={{uri:produto.img}}
                       />
                       <View style={[styles.escopo, {width: width}]}>
                           <Text style={{fontWeight: 'bold', fontSize: 24,  marginLeft:20,marginTop:20}}>
-                              {nome}
+                              {produto.nome}
                           </Text>
 
 
@@ -88,7 +89,7 @@
                       </View>
                       <View style={{width: width}}>
                           <Text style={[styles.description, {color: Colors.Gray["5"]}]}>
-                              {descricao}
+                              {produto.descricao}
                           </Text>
                       </View>
 

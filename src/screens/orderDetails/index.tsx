@@ -21,7 +21,7 @@ interface OrderDetailsProps {
 }
 
 interface Params {
-  num_order: number;
+  num_pedido: number;
 }
 
 const OrderDetails = ({ totalItens }: OrderDetailsProps) => {
@@ -30,7 +30,7 @@ const OrderDetails = ({ totalItens }: OrderDetailsProps) => {
   const { user } = useSelector((state: any) => state.user);
 
   const route = useRoute();
-  const { num_order } = route.params as Params;
+  const { num_pedido } = route.params as Params;
 
   const [orderDetails, setOrderDetails] = useState([{
     id: 0,
@@ -63,7 +63,8 @@ const OrderDetails = ({ totalItens }: OrderDetailsProps) => {
 
   useEffect(() => {
     const searchOrders = async () => {
-      await api.get(`/orderDetails/${user.id}/${num_order}`)
+      console.log("Vai menino" + num_pedido)
+      await api.get(`/orderDetails/${user.id}/${num_pedido}`)
         .then((resposta) => resposta.data)
         .then((json) => setOrderDetails(json))
         .catch((error) => console.error(error))
