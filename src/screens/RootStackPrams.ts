@@ -3,4 +3,6 @@ export type RootStackParamList = {
     Login: undefined;
     Register: undefined;
     Cardapio: undefined
+    Produtos: undefined;
+    Welcome: undefined;
 };

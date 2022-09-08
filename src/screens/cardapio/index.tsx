@@ -3,7 +3,6 @@ import {
   View,
   Text,
   useWindowDimensions,
-  ScrollView,
   Image,
   FlatList,
   TouchableOpacity,
@@ -12,16 +11,24 @@ import { color } from "react-native-reanimated";
 import Colors from "../../styles/colors";
 import NavBar from "../../components/navBar";
 import styles from "./style";
-import Title from "../../components/title";
-import Icon from "react-native-vector-icons/Feather";
 import monsterBurger from "../../../assets/icons/monster_burger.png";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+
+import { RootStackParamList } from "../RootStackPrams";
+
+type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
 
 const Cardapio = () => {
-  const { user, token } = useSelector((state: any) => state.user);
-  const navigation = useNavigation();
+  const { user , token } = useSelector((state: any) => state.user);
+  const navigation = useNavigation<authScreenProp>();
   const { width, height } = useWindowDimensions();
+
+  const customUser = useSelector((state: any) => state.user.user);
+
+  console.log("o outro", customUser);
+
   const data = [
     {
       name: "Golden Tradicionanl",
@@ -43,7 +50,7 @@ const Cardapio = () => {
     },
   ];
 
-  console.log(user.nome);
+  console.log(user.id);
 
   const openScreen = () => {
     navigation.navigate("Produtos");
