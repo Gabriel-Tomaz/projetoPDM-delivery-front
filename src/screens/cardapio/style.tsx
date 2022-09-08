@@ -1,32 +1,36 @@
 import Colors from "../../styles/colors";
-import {StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    CardContainer: {
-        paddingTop: 20,
-        alignItems: 'center',
-        backgroundColor: Colors.Neutral.white,
-    },
+  CardContainer: {
+    paddingTop: 20,
+    alignItems: "center",
+    backgroundColor: Colors.Neutral.white,
+  },
 
-    cardProd: {
-        alignItems: 'center',
-        margin: 10,
-        borderRadius: 5,
-        borderBottomWidth: 1,
-        borderColor:Colors.Gray["4"],
-        backgroundColor: Colors.Neutral.white,
-        elevation: 5
-    },
+  cardProd: {
+    alignItems: "center",
+    borderRadius: 8,
+    backgroundColor: Colors.Neutral.white,
+    margin: 12,
+    borderColor: Colors.Gray[2],
+    marginTop: 12,
+    padding: 12,
+    shadowColor: "blue",
+    shadowOffset: { width: -4, height: 12 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 2,
+  },
 
-    text: {
-        marginLeft: 10,
-        justifyContent: 'center'
-    },
-    total: {
-        color: Colors.DeepYellow[6],
-        fontSize: 18,
-    },
-
+  text: {
+    width: "100%",
+    justifyContent: "flex-start",
+  },
+  total: {
+    color: Colors.DeepYellow[6],
+    fontSize: 14,
+  },
 });
 
 export default styles;
