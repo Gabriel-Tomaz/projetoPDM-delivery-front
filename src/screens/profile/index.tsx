@@ -14,10 +14,9 @@ import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Title from "../../components/title";
 import {User} from "../../types/user";
-import {useAppDispatch} from "../../hooks";
 import api from "../../service/api";
-import {auth} from "../../store/actions/auth.actions";
 import {useNavigation} from "@react-navigation/native";
+import {useSelector} from "react-redux";
 
 type IResult = {
   uri: string;
@@ -95,7 +94,13 @@ const Profile: React.FC = () => {
   });
 
   const Singup = async (user: User) => {
-    const newUser = {id: 1, nome: user.nome? user.nome : name, email: user.email ? user.email : email, senha: user.senha, img: imagesURI[imagesURI.length - 1] }
+    const newUser = {
+      id: 1,
+      nome: user.nome? user.nome : name,
+      email: user.email ? user.email : email,
+      senha: user.senha,
+      img: imagesURI[imagesURI.length - 1]
+    }
     await api.put(`/userupdate`, newUser)
                     .then((resposta) => resposta.data)
                     .then((json) => setUser(json))

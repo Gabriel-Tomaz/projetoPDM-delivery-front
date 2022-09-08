@@ -7,6 +7,7 @@
     import Title from "../../components/title";
     import Colors from "../../styles/colors";
     import Button from "../../components/button";
+    import api from "../../service/api";
 
     interface Params{
         id: number,
@@ -39,8 +40,18 @@
             }
         }
 
+        const handleCreateBag = async () => {
+            const bag = {id_produto: produto.id, id_usuario: 1, quantidade: amount }
+            console.log(bag)
+            await api.post(`/sacola`, bag)
+                    .then((resposta) => resposta.data)
+                    .then((json) => console.log(json))
+                    .catch((error) => console.error(error))
+            openScreen()
+        }
+
         const openScreen = () => {
-            navigation.navigate('')
+            navigation.navigate('Sacola')
         }
 
 
@@ -105,7 +116,7 @@
                   </View>
 
                       <View style={{paddingTop: 40,}}>
-                          <Button type="primary" title="Adicionar à Sacola"  onPress={openScreen} />
+                          <Button type="primary" title="Adicionar à Sacola"  onPress={handleCreateBag} />
                       </View>
                   </View>
 
