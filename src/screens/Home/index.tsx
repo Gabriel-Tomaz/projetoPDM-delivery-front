@@ -1,5 +1,6 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
+import { CalendarOrder } from "../calendarOrder";
 
 import Cardapio from "../cardapio";
 import ShoppingBag from "../shoppingBag";
@@ -13,6 +14,7 @@ const Home = () => {
       initialRouteName="Cardapio"
     >
       <Drawer.Screen name="Cardapio" component={Cardapio} />
+      <Drawer.Screen name="Meus Pedidos" component={CalendarOrder} />
       <Drawer.Screen name="Sacola" component={ShoppingBag} />
     </Drawer.Navigator>
   );
