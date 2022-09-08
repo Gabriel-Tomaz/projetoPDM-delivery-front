@@ -1,6 +1,5 @@
 import React from "react";
 import {View, Text, useWindowDimensions, ScrollView, Image, FlatList, TouchableOpacity} from "react-native";
-import { color } from "react-native-reanimated";
 import Colors from "../../styles/colors";
 import NavBar from "../../components/navBar";
 import styles from "./style";

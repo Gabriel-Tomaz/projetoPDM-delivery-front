@@ -23,6 +23,7 @@ type IResult = {
 }
 
 const Profile: React.FC = () => {
+  const userLogin = useSelector((state: any) => state.user.user);
   const navigation = useNavigation();
   const [imagesURI, setImagesURI] = React.useState<string[]>([]);
 
@@ -56,10 +57,6 @@ const Profile: React.FC = () => {
       setEmail(user[0].email);
     }
   }, [user]);
-
-  // const openScreen = () => {
-  //   navigation.navigate('Cardapio');
-  // }
 
   async function hanldeSelectImages() {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -95,7 +92,7 @@ const Profile: React.FC = () => {
 
   const Singup = async (user: User) => {
     const newUser = {
-      id: 1,
+      id: userLogin.id,
       nome: user.nome? user.nome : name,
       email: user.email ? user.email : email,
       senha: user.senha,
@@ -180,7 +177,7 @@ const Profile: React.FC = () => {
                     }/>
 
                 <View style={{ marginTop: 20 }}>
-                  <Button title="Salvar dados" onPress={() => handleSubmit()} />
+                  <Button type='primary' title="Salvar dados" onPress={() => handleSubmit()} />
                 </View>
                 </View>
               )}

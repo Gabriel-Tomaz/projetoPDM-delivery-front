@@ -8,6 +8,7 @@
     import Colors from "../../styles/colors";
     import Button from "../../components/button";
     import api from "../../service/api";
+    import {useSelector} from "react-redux";
 
     interface Params{
         id: number,
@@ -18,6 +19,7 @@
     }
 
     const Product = () => {
+        const userLogin = useSelector((state: any) => state.user.user);
         const navigation = useNavigation();
         const route = useRoute();
         const {produto} = route.params as Params;
@@ -41,7 +43,7 @@
         }
 
         const handleCreateBag = async () => {
-            const bag = {id_produto: produto.id, id_usuario: 1, quantidade: amount }
+            const bag = {id_produto: produto.id, id_usuario: userLogin.id, quantidade: amount }
             console.log(bag)
             await api.post(`/sacola`, bag)
                     .then((resposta) => resposta.data)
