@@ -9,6 +9,8 @@ export declare  global {
             CalendarOrder:undefined,
             OrderHistory:{dates:string[]},
             OrderDetails: undefined,
+            Sacola: undefined,
+
         }
     }
 }

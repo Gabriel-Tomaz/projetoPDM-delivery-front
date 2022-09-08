@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Image, TouchableOpacity, Text } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Formik } from "formik";
+import * as Yup from "yup";
 
 import Input from "../../components/input";
 import Button from "../../components/button";
@@ -11,41 +13,102 @@ import { StyleSheet } from "react-native";
 
 import { ScrollView } from "react-native-gesture-handler";
 import Title from "../../components/title";
+import {User} from "../../types/user";
+import api from "../../service/api";
+import {useNavigation} from "@react-navigation/native";
+import {useSelector} from "react-redux";
 
 type IResult = {
   uri: string;
 }
 
 const Profile: React.FC = () => {
-
+  const navigation = useNavigation();
   const [imagesURI, setImagesURI] = React.useState<string[]>([]);
 
+  const [user, setUser] = React.useState([{
+    id: 0,
+    email: '',
+    nome: '',
+    img:  imagesURI[imagesURI.length - 1],
+    senha: ''
+  }]);
+
+  const [name, setName] = React.useState(String);
+  const [email, setEmail] = React.useState(String);
+  const [password, setPassword] = React.useState(String);
+
+  React.useEffect(() => {
+    const searchOrders = async () => {
+      await api.get(`/userget/${1}`)
+          .then((resposta) => resposta.data)
+          .then((json) => setUser(json))
+          .catch((error) => console.error(error))
+    }
+    searchOrders();
+  }, []);
+
+
+  React.useEffect(() => {
+    if(user[0] != undefined) {
+      setImagesURI([...imagesURI, user[0].img]);
+      setName(user[0].nome);
+      setEmail(user[0].email);
+    }
+  }, [user]);
+
+  // const openScreen = () => {
+  //   navigation.navigate('Cardapio');
+  // }
+
   async function hanldeSelectImages() {
-    // tenho acesso a galeria de fotos e não a câmera
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (status !== 'granted') {// granted é quando o usuário deu permissão
+    if (status !== 'granted') {
       alert('Eita, precisamos de acesso às suas fotos...');
       return;
     }
     let result = await ImagePicker.launchImageLibraryAsync({
-      // permite ao usuario editar a imagem (crop), antes de subir o app
       allowsEditing: true,
       quality: 1,
-      //quero apensas imagems e não vídeo tb
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
     });
 
-    if (!result.cancelled) { // se cancelou o upload da imagem
+    if (!result.cancelled) {
       const { uri } = result as IResult;
-      // questão do conceito de imutabilidade. sempre que uma imagem for adicionado, 
-      //temos que copiar as imagens que tinha antes no array. 
-      //se não vai apagar na próxima renderização. pois começa sempre do zero
       setImagesURI([...imagesURI, uri]);
-      console.log(imagesURI)
     }
-
   }
+
+  const initialValues: User = {
+    id: 0,
+    email: "",
+    nome: "",
+    img: "",
+    senha: ""
+  };
+
+  const SingupSchema = Yup.object().shape({
+    email: Yup.string().email("Email invalido"),
+    senha: Yup.string().min(8, "Senha invalida").required("Obrigatório"),
+  });
+
+  const Singup = async (user: User) => {
+    const newUser = {
+      id: 1,
+      nome: user.nome? user.nome : name,
+      email: user.email ? user.email : email,
+      senha: user.senha,
+      img: imagesURI[imagesURI.length - 1]
+    }
+    await api.put(`/userupdate`, newUser)
+                    .then((resposta) => resposta.data)
+                    .then((json) => setUser(json))
+                    .catch((error) => console.error(error))
+
+    navigation.navigate('Cardapio');
+  };
+
   return (
     <KeyboardAwareScrollView
       style={{
@@ -65,7 +128,7 @@ const Profile: React.FC = () => {
             <Title 
               label="Perfil"/>
 
-            <View style={{width:350, justifyContent: 'center', alignItems: 'center',}}>
+            <View style={{width:350, justifyContent: 'center', alignItems: 'center'}}>
               <View style={styles.uploadedImageContainer}>
                 <Image
                   key={imagesURI[imagesURI.length - 1]}
@@ -78,23 +141,52 @@ const Profile: React.FC = () => {
             <TouchableOpacity style={styles.imagesInput} onPress={hanldeSelectImages}>
               <Feather name="plus" size={24} color={Colors.Gray[4]} />
             </TouchableOpacity>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={SingupSchema}
+                onSubmit={(values: User) => Singup(values)}
+            >
+            {({
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                values,
+                touched,
+                errors
+              }) => (
+                <View>
+                    <Input label="Nome"
+                           placeholder={name}
+                           value={values.nome}
+                           onBlur={handleBlur("nome")}
+                           onChange={handleChange("nome")}/>
 
-            <Input label="Nome" placeholder="ZédoGas" />
-            <Input label="Email" placeholder="exemplo@gmail" />
-            <Input label="Senha" placeholder="Digite nova senha" />
+                    <Input label="Email"
+                           placeholder={email}
+                           value={values.email}
+                           onBlur={handleBlur("email")}
+                           onChange={handleChange("email")}
+                           error={errors.email && touched.email ? errors.email : undefined}/>
 
+                    <Input label="Senha"
+                           placeholder="Digite sua senha ou uma nova"
+                           value={values.senha}
+                           onBlur={handleBlur("senha")}
+                           onChange={handleChange("senha")}
+                           error={
+                      errors.senha && touched.senha
+                          ? errors.senha
+                          : undefined
+                    }/>
+
+                <View style={{ marginTop: 20 }}>
+                  <Button title="Salvar dados" onPress={() => handleSubmit()} />
+                </View>
+                </View>
+              )}
+            </Formik>
           </View>
-          <View style={{ marginTop: 20 }}>
-            <Button type='primary' title="Editar" />
-          </View>
 
-          <View style={{ marginTop: 25 }}>
-            <Button
-              title="Deletar Conta"
-              type='secondary'
-
-            />
-          </View>
         </View>
       </ScrollView>
     </KeyboardAwareScrollView>
