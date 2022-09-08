@@ -1,11 +1,14 @@
 import React from "react";
+
 import {View, Text, useWindowDimensions, ScrollView, Image, FlatList, TouchableOpacity} from "react-native";
+
 import Colors from "../../styles/colors";
-import NavBar from "../../components/navBar";
 import styles from "./style";
+
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import api from "../../service/api";
+import NavBar from "../../components/navBar";
 
 const Cardapio = () => {
     const { user, token } = useSelector((state: any) => state.user);

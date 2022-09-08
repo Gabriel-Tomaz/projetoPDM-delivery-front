@@ -10,6 +10,8 @@ export const REGISTER = "[REGISTER] REGISTER";
 export const REGISTER_SUCCESS = "[REGISTER] REGISTER_SUCCESS";
 export const REGISTER_FAILED = "[REGISTER] REGISTER_FAILED";
 
+export const LOGOUT = "[AUTH] LOGOUT";
+
 export const auth = (user: User, callback: CallableFunction): any => {
   return async (dispatch: AppDispatch) => {
     dispatch({ type: AUTH });
@@ -51,5 +53,11 @@ export const register = (data: User, callback: CallableFunction): any => {
       dispatch({ type: REGISTER_FAILED });
       return callback && callback(e);
     }
+  };
+};
+
+export const logout = (callback: CallableFunction): any => {
+  return async (dispatch: AppDispatch) => {
+    dispatch({ type: LOGOUT });
   };
 };
