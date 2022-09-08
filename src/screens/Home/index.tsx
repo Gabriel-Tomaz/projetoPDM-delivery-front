@@ -1,5 +1,10 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
+<<<<<<< HEAD
 import { Platform, StatusBar } from "react-native";
+=======
+import { NavigationContainer } from "@react-navigation/native";
+import { CalendarOrder } from "../calendarOrder";
+>>>>>>> cff3069bc9a9f7eab2e1225198f13efc83ef3598
 
 import Cardapio from "../cardapio";
 import ShoppingBag from "../shoppingBag";
@@ -99,6 +104,7 @@ const Home = () => {
       initialRouteName="Cardápio"
       drawerContent={props => (<CustomDrawerContent {...props}/>)}
     >
+<<<<<<< HEAD
       <Drawer.Screen
         name="Cardápio"
         component={Cardapio}
@@ -107,6 +113,11 @@ const Home = () => {
         name="Sacola"
         component={ShoppingBag}
       />
+=======
+      <Drawer.Screen name="Cardapio" component={Cardapio} />
+      <Drawer.Screen name="Meus Pedidos" component={CalendarOrder} />
+      <Drawer.Screen name="Sacola" component={ShoppingBag} />
+>>>>>>> cff3069bc9a9f7eab2e1225198f13efc83ef3598
     </Drawer.Navigator>
   );
 };

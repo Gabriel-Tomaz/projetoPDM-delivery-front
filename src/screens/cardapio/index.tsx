@@ -1,164 +1,91 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  TouchableOpacity,
-  SafeAreaView,
-  Platform,
-  StatusBar,
-} from "react-native";
+
+import {View, Text, useWindowDimensions, ScrollView, Image, FlatList, TouchableOpacity} from "react-native";
+
 import Colors from "../../styles/colors";
 import styles from "./style";
-import monsterBurger from "../../../assets/icons/monster_burger.png";
+
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
-import { DrawerNavigationProp } from "@react-navigation/drawer";
-
-import { RootStackParamList } from "../RootStackPrams";
-import { Icon } from "@rneui/base";
-
-type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
+import api from "../../service/api";
+import NavBar from "../../components/navBar";
 
 const Cardapio = () => {
-  const { user } = useSelector((state: any) => state.user);
-  const navigation = useNavigation<authScreenProp>();
+    const { user, token } = useSelector((state: any) => state.user);
+    const navigation = useNavigation();
+    const {width, height } = useWindowDimensions();
+    const [product, setProduct] = React.useState([{
+        id: String,
+        nome: String,
+        img: String,
+        preco: Number,
+        descricao: String
+    }]);
 
-  console.log(user.nome);
+    const openScreen = (item: any) => {
+        navigation.navigate('Produtos', {
+            produto: item
+        });
+    }
 
-  const data = [
-    {
-      name: "Golden Tradicionanl",
-      description:
-        " 2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal.",
-      price: 25.25,
-    },
-    {
-      name: "Golden ",
-      description:
-        " 2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal.",
-      price: 25.25,
-    },
-    {
-      name: "Burger",
-      description:
-        " 2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal.",
-      price: 25.25,
-    },
-    {
-      name: "Burger",
-      description:
-        " 2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal.",
-      price: 25.25,
-    },
-  ];
+    React.useEffect(() => {
+        const searchProduct = async() => {
+            await api.get(`/getproduct/`)
+                .then((resposta) => resposta.data)
+                .then((json) => setProduct(json))
+                .catch((error) => console.error(error))
+        }
 
-  const openScreen = () => {
-    navigation.navigate("Produtos");
-  };
+        searchProduct();
+    }, []);
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: Colors.Neutral.white,
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-      }}
-    >
-      <View style={{ paddingHorizontal: 18, paddingVertical: 18 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 4,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              lineHeight: 38.4,
-              color: Colors.Neutral.black,
-              fontWeight: "500",
-            }}
-          >
-            Olá, {user.nome} 👋🏾
-          </Text>
-          <TouchableOpacity
-            style={{
-              padding: 4,
-            }}
-            onPress={() => navigation.openDrawer()}
-          >
-            <Icon
-              type="material"
-              name="menu"
-              color={Colors.DeepYellow[6]}
-              size={24}
-            />
-          </TouchableOpacity>
-        </View>
-        <Text
-          style={{
-            fontSize: 14,
-            color: Colors.Gray[4],
-            fontWeight: "400",
-          }}
-        >
-          O que deseja pra hoje?
-        </Text>
-      </View>
 
-      <View
-        style={{
+      <View style={[styles.CardContainer, {
           flex: 1,
-          paddingHorizontal: 6,
-        }}
-      >
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.name}
-          numColumns={2}
-          style={{
-            flex: 1,
-          }}
-          contentContainerStyle={{
-            flex: 1,
-          }}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                onPress={openScreen}
-                style={[styles.cardProd, { flex: 2 }]}
-              >
-                <View
-                  style={{
-                    width: "100%",
-                    alignItems: "center",
-                  }}
-                >
-                  <Image
-                    style={{ width: 95, height: 95 }}
-                    source={monsterBurger}
-                  />
-                </View>
-                <View style={styles.text}>
+          width,
+          height,
+          backgroundColor: Colors.Gray["0"],
+      }]}>
+              <View style={{
+                position: 'relative', zIndex: 1,
+                width,
+                height: 150,
+                marginBottom: 15
+              }}>
+                  <NavBar/>
                   <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: "600",
-                    }}
+                  style={{
+                      fontWeight: "bold",
+                      color: Colors.Neutral.black,
+                      textAlign: "center",
+                      fontSize:24,
+                      }}
                   >
-                    {item.name}
+                      Seja Bem-vindo👋
                   </Text>
-                  <Text style={styles.total}>R${item.price}</Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
+              </View>
+
+          { <FlatList
+              data={product}
+              keyExtractor={item => item.id.toString()}
+              numColumns={2}
+              renderItem={({item}) => {
+                  return (
+                      <TouchableOpacity onPress={(f) => openScreen(item)} style={[styles.cardProd, {width: width / 2 - 40}]}>
+                          <Image style={{width: 95, height: 95, marginTop: 10}}
+                                 source={{uri: item.img.toString()}}
+                          />
+                          <View style={styles.text}>
+                              <Text>{item.nome}</Text>
+                              <Text style={styles.total}>R${item.preco}</Text>
+                          </View>
+                      </TouchableOpacity>
+
+                  );
+              }}
+          />
+          }
       </View>
-    </SafeAreaView>
   );
 };
 

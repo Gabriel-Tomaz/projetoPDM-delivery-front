@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     img: {
         justifyContent: "center",
         marginTop: -250,
-
+        backgroundColor: '#FFA200',
     },
 
     escopo: {
