@@ -42,6 +42,8 @@ const OrderDetails = ({ num_order, totalItens }: OrderDetailsProps) => {
     orderDetails.map(d => {
       sum = (sum + d.preco_produto)
     })
+    sum.toFixed(2)
+    console.log(sum)
     return sum
   }
 
@@ -93,7 +95,7 @@ const OrderDetails = ({ num_order, totalItens }: OrderDetailsProps) => {
                 totalOrder={item.preco_produto}
                 amount={item.quantidade}
                 img={item.img}
-                key={item.nome}
+                key={item.id}
               />
             )
 

@@ -59,6 +59,7 @@ const OrderHistory = () => {
 
         <FlatList
           data={productOrder}
+          keyExtractor={(item) => item.status_pedido}
           renderItem={({ item }) => (
             <OrderHistoryCard
               num_order={item.id}

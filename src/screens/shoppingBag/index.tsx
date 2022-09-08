@@ -16,11 +16,10 @@ interface Props {
 }
 
 const ShoppingBag = ({ totalItens = 4 }: Props) => {
-
-
   const navigation = useNavigation();
   const [productBad, setProductBag] = useState([{
-    id: 0,
+    id_sacola: 0,
+    id_produto: 0,
     img: '',
     preco: 0,
     nome: '',
@@ -28,13 +27,32 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
     preco_total: 0
   }]);
 
-  const [total, setTotal] = useState(0);
-
+  const deletarProduto = (item: any) => {
+    const deleteProductBag = async () => {
+      await api.delete(`/deleteBag/${item.id_sacola}`)
+        .then((resposta) => resposta.data)
+        .then((json) => console.log(json))
+        .catch((error) => console.error(error))
+    }
+    deleteProductBag();
+  }
 
   const goBackProduct = (item: any) => {
+
+    deletarProduto(item);
+
+    const produtoEditar= {
+      id: item.id_produto,
+      nome: item.nome,
+      img: item.img,
+      preco: item.preco,
+      descricao: item.descricao
+    }
+    
     navigation.navigate('Produtos', {
-      produto: item
+      produto: produtoEditar
     });
+   
   }
 
   let sum = 0
@@ -97,7 +115,7 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
                   />
                   <View style={styles.texto}>
                     <Text >{item.nome}</Text>
-                    <Text style={styles.total}>R${item.preco}</Text>
+                    <Text style={styles.total}>R${item.preco_total}</Text>
                   </View>
                 </View>
 
