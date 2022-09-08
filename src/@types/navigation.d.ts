@@ -8,7 +8,7 @@ export declare  global {
             Cardapio: undefined,
             CalendarOrder:undefined,
             OrderHistory:{dates:string[]},
-            OrderDetails: undefined,
+            OrderDetails: {num_pedido:number},
             Sacola: undefined,
 
         }

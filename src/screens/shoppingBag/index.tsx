@@ -9,7 +9,8 @@ import api from "../../service/api";
 import monsterBurger from '../../../assets/icons/monster_burger.png';
 import { FlatList } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-
+import { useSelector } from "react-redux";
+import Header from "../../components/header";
 
 interface Props {
   totalItens?: number;
@@ -17,6 +18,7 @@ interface Props {
 
 const ShoppingBag = ({ totalItens = 4 }: Props) => {
   const navigation = useNavigation();
+  const { user } = useSelector((state: any) => state.user);
   const [productBad, setProductBag] = useState([{
     id_sacola: 0,
     id_produto: 0,
@@ -71,7 +73,7 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
 
   useEffect(() => {
     const searchProductBag = async () => {
-      await api.get(`/orderBag/1`)
+      await api.get(`/orderBag/${user.id}`)
         .then((resposta) => resposta.data)
         .then((json) => setProductBag(json))
         .catch((error) => console.error(error))
@@ -84,11 +86,15 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
 
     <View style={styles.orderDetails}>
 
-      <View style={styles.titleContainer}>
+      {/* <View style={styles.titleContainer}>
         <Icon name="arrow-left"
           style={{ fontSize: 35, color: Colors.DeepYellow[6] }} />
         <Text style={styles.title}>Sacola</Text>
-      </View>
+      </View> */}
+
+      <Header 
+        title="Sacola"
+      />
 
       <View style={styles.itensContainer}>
         <View>

@@ -11,6 +11,7 @@ import styles from "./style";
 import Colors from '../../styles/colors';
 import Button from '../../components/button';
 import Icon from 'react-native-vector-icons/Feather';
+import Header from '../../components/header';
 
 
 export function CalendarOrder() {
@@ -52,11 +53,15 @@ export function CalendarOrder() {
   return (
     <View style={styles.container}>
 
-      <View style={styles.titleContainer}>
+      {/* <View style={styles.titleContainer}>
         <Icon name="arrow-left"
           style={{ fontSize: 35, color: Colors.DeepYellow[6] }} />
         <Text style={styles.text}>Meus Pedidos</Text>
-      </View>
+      </View> */}
+      
+      <Header 
+        title="Meus Pedidos"
+      />
 
       <View style={styles.header}>
 

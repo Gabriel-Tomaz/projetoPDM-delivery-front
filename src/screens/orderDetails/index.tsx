@@ -10,19 +10,27 @@ import StatusOrder from "../../components/statusOrder";
 import Icon from 'react-native-vector-icons/Feather';
 import Colors from "../../styles/colors";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 import api from "../../service/api";
 import SummaryValue from "../../components/summaryValue";
+import Header from "../../components/header";
 
 
 interface OrderDetailsProps {
-  num_order?: number;
   totalItens?: number;
 }
 
+interface Params {
+  num_order: number;
+}
 
-const OrderDetails = ({ num_order, totalItens }: OrderDetailsProps) => {
+const OrderDetails = ({ totalItens }: OrderDetailsProps) => {
 
   const navigation = useNavigation();
+  const { user } = useSelector((state: any) => state.user);
+
+  const route = useRoute();
+  const { num_order } = route.params as Params;
 
   const [orderDetails, setOrderDetails] = useState([{
     id: 0,
@@ -55,7 +63,7 @@ const OrderDetails = ({ num_order, totalItens }: OrderDetailsProps) => {
 
   useEffect(() => {
     const searchOrders = async () => {
-      await api.get(`/orderDetails/1/2`)
+      await api.get(`/orderDetails/${user.id}/${num_order}`)
         .then((resposta) => resposta.data)
         .then((json) => setOrderDetails(json))
         .catch((error) => console.error(error))
@@ -67,14 +75,18 @@ const OrderDetails = ({ num_order, totalItens }: OrderDetailsProps) => {
     <ScrollView>
       <View style={{ flex: 1, justifyContent: "center", padding: 18, backgroundColor: Colors.Neutral.white }}>
 
-        <View style={styles.titleContainer}>
+        {/* <View style={styles.titleContainer}>
           <Icon name="arrow-left"
             style={{ fontSize: 40, color: Colors.DeepYellow[6] }}
           />
           <View style={{ alignItems: 'center' }}>
             <Text style={styles.titleOrder}>Pedido #{orderDetails[0].id}</Text>
           </View>
-        </View>
+        </View> */}
+
+        <Header 
+          title="Pedido"
+        />
 
         <View style={styles.itensContainer}>
           <View>
