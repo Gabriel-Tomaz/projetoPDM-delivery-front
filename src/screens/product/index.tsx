@@ -45,7 +45,7 @@
         const handleCreateBag = async () => {
             const bag = {id_produto: produto.id, id_usuario: userLogin.id, quantidade: amount }
             console.log(bag)
-            await api.post(`/sacola`, bag)
+            await api.post(`/bag`, bag)
                     .then((resposta) => resposta.data)
                     .then((json) => console.log(json))
                     .catch((error) => console.error(error))

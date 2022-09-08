@@ -18,7 +18,7 @@ interface Props {
 
 const ShoppingBag = ({ totalItens = 4 }: Props) => {
   const navigation = useNavigation();
-  const user = useSelector((state: any) => state.user.user);
+  const { user } = useSelector((state: any) => state.user);
   const [productBad, setProductBag] = useState([{
     id_sacola: 0,
     id_produto: 0,
@@ -29,15 +29,13 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
     preco_total: 0
   }]);
 
-  const deletarProduto = (item: any) => {
-    const deleteProductBag = async () => {
+  const deletarProduto = async (item: any) => {
       await api.delete(`/deleteBag/${item.id_sacola}`)
         .then((resposta) => resposta.data)
         .then((json) => console.log(json))
         .catch((error) => console.error(error))
     }
-    deleteProductBag();
-  }
+
 
   const goBackProduct = (item: any) => {
 
@@ -60,7 +58,7 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
   let sum = 0
   const subTotal = () => {
     productBad.map(d => {
-      sum = (sum + d.preco_total)
+      sum = sum + d.preco_total
     })
     return sum
   }
