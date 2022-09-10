@@ -115,7 +115,7 @@ const Register = () => {
                 <View style={{ marginTop: 8 }}>
                   <Button
                     type="primary"
-                    title="Cadaste-se"
+                    title="Cadastres-se"
                     onPress={() => handleSubmit()}
                   />
                 </View>
