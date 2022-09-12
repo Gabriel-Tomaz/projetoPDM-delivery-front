@@ -1,17 +1,27 @@
-import { Text, View, Image } from "react-native";
+import { Text, View } from "react-native";
 import styles from "./style";
 
-import  Icon  from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/Feather";
 import StatusOrder from "../statusOrder";
 
+import { useNavigation } from '@react-navigation/native';
+
 interface Props {
-    num_order?: string;
-    timestamp?: string;
+    num_order: number;
+    date: string;
     status?: string;
-    totalOrder?: string;
+    totalOrder?: number;
 }
 
-const OrderHistoryCard = ({ num_order, timestamp, status, totalOrder }: Props) => {
+const OrderHistoryCard = ({num_order, status, totalOrder}: Props) => {
+
+    const navigation = useNavigation();
+    const openDetails = () => {
+        navigation.navigate('OrderDetails',{
+            num_pedido: num_order 
+        })
+    }
+
     return (
 
         <View style={styles.orderContainer}>
@@ -22,24 +32,25 @@ const OrderHistoryCard = ({ num_order, timestamp, status, totalOrder }: Props) =
                     <View style={styles.firstCard}>
                         <View>
                             <Text style={styles.title}>Pedido #{num_order}</Text>
-                            <Text style={styles.timestamp}>{timestamp}</Text>
+                           
                         </View>
 
                         <View>
                             <Text style={styles.totalTitle}>Total</Text>
-                            <Text style={styles.total}>{totalOrder}</Text>
+                            <Text style={styles.total}>R${totalOrder}</Text>
                         </View>
                     </View>
 
                     <View style={styles.secondCard}>
-                        
-                        <StatusOrder 
+
+                        <StatusOrder
                             status={status}
                         />
                         <Icon name="arrow-right" size={38}
-                             style={
+                            style={
                                 { color: '#FFA200' }}
-                        ></Icon>
+                            onPress={openDetails}
+                        />
                     </View>
 
                 </View>

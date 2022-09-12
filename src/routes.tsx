@@ -1,19 +1,54 @@
-// import React from "react";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
-// import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
-// import Login from "./screens/login";
+import Welcome from "./screens/Welcome";
+import Login from "./screens/login";
+import Product from "./screens/product";
 
-// const Routes = () => {
-//   const Drawer = createDrawerNavigator();
+import Register from "./screens/register";
+import Home from "./screens/Home";
+import { CalendarOrder } from "./screens/calendarOrder";
+import OrderHistory from "./screens/orderHistory";
+import OrderDetails from "./screens/orderDetails";
+import ShoppingBag from "./screens/shoppingBag";
+import RegisterAddress from "./screens/registerAddress";
+import Cardapio from "./screens/cardapio";
 
-//   return (
-//     <NavigationContainer >
-//       <Drawer.Navigator screenOptions={{ headerShown: false }}>
-//         <Drawer.Screen name="Login" component={Login} />
-//       </Drawer.Navigator>
-//     </NavigationContainer>
-//   );
-// };
+const Routes = () => {
+  const { token } = useSelector((state: any) => state.user);
+  const Stack = createStackNavigator();
 
-// export default Routes;
+  React.useEffect(() => {}, []);
+  return (
+    <NavigationContainer>
+      {!token ? (
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName="Welcome"
+        >
+          <Stack.Screen name="Welcome" component={Welcome} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
+        </Stack.Navigator>
+      ) : (
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName="Home"
+        >
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Produtos" component={Product} />
+          <Stack.Screen name="ShoppingBag" component={ShoppingBag} />
+          <Stack.Screen name="CalendarOrder" component={CalendarOrder} />
+          <Stack.Screen name="OrderHistory" component={OrderHistory} />
+          <Stack.Screen name="OrderDetails" component={OrderDetails} />
+          <Stack.Screen name="RegisterAddress" component={RegisterAddress} />
+          <Stack.Screen name="Cardapio" component={Cardapio} />
+        </Stack.Navigator>
+      )}
+    </NavigationContainer>
+  );
+};
+
+export default Routes;

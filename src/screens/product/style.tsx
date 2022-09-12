@@ -1,4 +1,5 @@
 import { StyleSheet} from "react-native";
+import Colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
     container:{
@@ -24,8 +25,8 @@ const styles = StyleSheet.create({
 
     img: {
         justifyContent: "center",
-        marginTop: -350,
-
+        marginTop: -250,
+        backgroundColor: '#FFA200',
     },
 
     escopo: {
@@ -47,22 +48,52 @@ const styles = StyleSheet.create({
     },
 
     cardButton: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: "space-evenly",
+        justifyContent: "center",
+        // marginLeft:5,
+        // marginRight:5,
     },
 
     countButton: {
-        justifyContent: "center",
-        alignItems: 'center',
+        justifyContent: "flex-start",
+        alignItems: 'flex-start',
         height: 50,
     },
-
-
 
     cor: {
         color: '#FFA200',
         backgroundColor: '#FFA200'
+    },
+    secondCard: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        // width:105,
+        height:50,
+    },
+    most :{
+        backgroundColor: '#FFA200',
+        padding:9,
+        alignContent:'center',
+        borderBottomRightRadius: 4,
+        borderTopRightRadius: 4
+
+    },
+    minus :{
+        backgroundColor: Colors.Gray[1],
+        padding:9,
+        borderBottomLeftRadius: 4,
+        borderTopLeftRadius: 4
+    },
+    textQnt:{
+        padding:6,
+        color: '#FFA200',
+        fontSize:16,
+        fontWeight: 'bold',
+        borderColor: '#F2F4F5',
+        borderWidth:1,
+        borderStyle: 'solid',
     }
 
 });

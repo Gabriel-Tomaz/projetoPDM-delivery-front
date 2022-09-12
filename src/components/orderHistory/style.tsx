@@ -4,8 +4,7 @@ import Colors from "../../styles/colors";
 const styles = StyleSheet.create({
     orderContainer: {
         flex: 1,
-        justifyContent:'space-around',
-       
+        justifyContent:'space-around'
     },
     cardsContainer: {
         maxWidth: 380,
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     },
     secondCard:{
         alignItems: 'flex-end',
-        width:150,
+        width:170,
         justifyContent: 'space-between',
         marginTop:8
     },

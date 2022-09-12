@@ -1,81 +1,80 @@
-import { Text, View, TouchableOpacity, TouchableOpacityProps} from "react-native";
+import { Text, View, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import styles from "./style";
 
 import SummaryValue from "../summaryValue";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Input from "../input";
 import Colors from "../../styles/colors";
+import { useEffect, useState } from "react";
 
 
-interface PaymentCardProps extends TouchableOpacityProps{
-    active?: boolean
+interface PaymentCardProps extends TouchableOpacityProps {
+    tipoPagamento?: number;
+    troco?: number;
 }
 
-const PaymentCard = ({ active = true, ...rest}: PaymentCardProps) => {
+const PaymentCard = ({ tipoPagamento, troco, ...rest }: PaymentCardProps) => {
+    const [dinheiro, setDinheiro] = useState(false);
+    const [cartao, setCartao] = useState(false);
+
+    useEffect(() => {
+
+        const pagament = () => {
+            if (tipoPagamento == 0) {
+                setDinheiro(true)
+            }
+            else {
+                setCartao(true)
+            }
+        }
+        pagament();
+    }, []);
+
     return (
         <View>
             <Text style={styles.title}>Tipo de Pagamento</Text>
             <View style={styles.container}>
 
                 <TouchableOpacity
-                    style={[styles.card,
-                    active && styles.cardActive
-                    ]}
+                    style={dinheiro ? styles.card : styles.cardActive}
                     {...rest}
-                    >
+                >
 
                     <Icon name="attach-money" size={22}
-                        style={[
-                            { color: Colors.DeepYellow[6] },
-                            active && { color: Colors.Gray[1] }
-                        ]}
+                        style={dinheiro ? { color: Colors.DeepYellow[6] } : { color: Colors.Gray[1] }}
                     />
 
                     <Text
-                        style={[styles.text,
-                        active && styles.textActive
-                        ]}>
+                        style={dinheiro ? styles.text : styles.textActive}>
                         Dinheiro
                     </Text>
                 </TouchableOpacity>
 
+
                 <TouchableOpacity
-                    style={[styles.card,
-                    active && styles.cardActive
-                    ]}
+                    style={cartao ? styles.card : styles.cardActive}
                     {...rest}>
 
                     <Icon name="credit-card" size={22}
-                        style={[
-                            { color: '#FFA200' },
-                            active && { color: '#FFFFFF' }
-                        ]}
+                        style={cartao ? { color: Colors.DeepYellow[6] } : { color: Colors.Gray[1] }}
                     />
 
                     <Text
-                        style={[styles.text,
-                        active && styles.textActive
-                        ]}>
+                        style={cartao ? styles.text : styles.textActive}>
                         Cartão
                     </Text>
                 </TouchableOpacity>
             </View>
 
-            <Text style={styles.title}>Troco</Text>
-            <View>
-                <Input
-                    placeholder="Precisa de troco?"
-                />
-            </View>
+            {/*{dinheiro ? null :*/}
+            {/*    <View>*/}
+            {/*        <Text style={[styles.title]}>Troco</Text>*/}
+            {/*        <View style={styles.troco}>*/}
+            {/*            <Text style={styles.text}>R$ {troco}</Text>*/}
+            {/*        </View>*/}
+            {/*    </View>*/}
+            {/*}*/}
 
-            <Text style={styles.title}>Cupom</Text>
-            <View>
-                <Input
-                    placeholder="Digite o cupom"
-                />
-            </View>
-
-            <SummaryValue />
 
         </View>
     );
