@@ -22,7 +22,8 @@
         const userLogin = useSelector((state: any) => state.user.user);
         const navigation = useNavigation();
         const route = useRoute();
-        const {produto} = route.params as Params;
+    
+        const produto = route.params as Params;
 
         const {width, height } = useWindowDimensions();
         const [countPrice, setCountPrice] = React.useState(produto.preco);
