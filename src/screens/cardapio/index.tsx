@@ -69,7 +69,7 @@ const Cardapio = () => {
             width,
             height,
             backgroundColor: Colors.Gray["0"],
-            paddingHorizontal: 18
+            paddingHorizontal: 18,
           },
         ]}
       >
@@ -136,16 +136,6 @@ const Cardapio = () => {
                         marginBottom: 4,
                       }}
                     >
-                      <Text
-                        style={{
-                          fontSize: 20,
-                          lineHeight: 38.4,
-                          color: Colors.Neutral.black,
-                          fontWeight: "500",
-                        }}
-                      >
-                        Olá, {user.nome} 👋🏾
-                      </Text>
                       <TouchableOpacity
                         style={{
                           padding: 4,
@@ -159,15 +149,6 @@ const Cardapio = () => {
                           size={24}
                         />
                       </TouchableOpacity>
-                      <Text
-                        style={{
-                          fontSize: 14,
-                          color: Colors.Gray[4],
-                          fontWeight: "400",
-                        }}
-                      >
-                        O que deseja pra hoje?
-                      </Text>
                     </View>
 
                     {
