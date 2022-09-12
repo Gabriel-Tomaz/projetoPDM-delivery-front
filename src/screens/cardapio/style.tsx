@@ -3,8 +3,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   CardContainer: {
-    paddingTop: 20,
-    alignItems: "center",
     backgroundColor: Colors.Neutral.white,
   },
 

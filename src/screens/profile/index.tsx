@@ -17,13 +17,17 @@ import {User} from "../../types/user";
 import api from "../../service/api";
 import {useNavigation} from "@react-navigation/native";
 import {useSelector} from "react-redux";
+import { RootStackParamList } from "../RootStackPrams";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 
 type IResult = {
   uri: string;
 }
 
+type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
+
 const Profile: React.FC = () => {
-  const userLogin = useSelector((state: any) => state.user.user);
+  const userLogin = useSelector<authScreenProp>((state: any) => state.user.user);
   const navigation = useNavigation();
   const [imagesURI, setImagesURI] = React.useState<string[]>([]);
 
@@ -39,24 +43,24 @@ const Profile: React.FC = () => {
   const [email, setEmail] = React.useState(String);
   const [password, setPassword] = React.useState(String);
 
+  // React.useEffect(() => {
+  //   const searchOrders = async () => {
+  //     await api.get(`/userget/${userLogin.id}`)
+  //         .then((resposta) => resposta.data)
+  //         .then((json) => setUser(json))
+  //         .catch((error) => console.error(error))
+  //   }
+  //   searchOrders();
+  // }, []);
+
+
   React.useEffect(() => {
-    const searchOrders = async () => {
-      await api.get(`/userget/${1}`)
-          .then((resposta) => resposta.data)
-          .then((json) => setUser(json))
-          .catch((error) => console.error(error))
+    if(userLogin != undefined) {
+      setImagesURI([...imagesURI, userLogin.img]);
+      setName(userLogin.nome);
+      setEmail(userLogin.email);
     }
-    searchOrders();
   }, []);
-
-
-  React.useEffect(() => {
-    if(user[0] != undefined) {
-      setImagesURI([...imagesURI, user[0].img]);
-      setName(user[0].nome);
-      setEmail(user[0].email);
-    }
-  }, [user]);
 
   async function hanldeSelectImages() {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -79,9 +83,9 @@ const Profile: React.FC = () => {
 
   const initialValues: User = {
     id: 0,
-    email: "",
-    nome: "",
-    img: "",
+    email: '',
+    nome: '',
+    img: '',
     senha: ""
   };
 
@@ -103,7 +107,7 @@ const Profile: React.FC = () => {
                     .then((json) => setUser(json))
                     .catch((error) => console.error(error))
 
-    navigation.navigate('Cardapio');
+    navigation.navigate('Cardápio');
   };
 
   return (

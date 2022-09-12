@@ -4,6 +4,9 @@ import { Platform, StatusBar } from "react-native";
 import Cardapio from "../cardapio";
 import ShoppingBag from "../shoppingBag";
 import { CalendarOrder } from "../calendarOrder";
+import RegisterAddress from "../registerAddress";
+import ListAddresses from "../Adresses";
+import Profile from "../profile";
 
 import Colors from "../../styles/colors";
 import CustomDrawerContent from "./CustomDrawerContent";
@@ -103,6 +106,8 @@ const Home = () => {
       <Drawer.Screen name="Cardápio" component={Cardapio} />
       <Drawer.Screen name="Meus Pedidos" component={CalendarOrder} />
       <Drawer.Screen name="Sacola" component={ShoppingBag} />
+      <Drawer.Screen name="Meus endereços" component={ListAddresses} />
+      <Drawer.Screen name="Perfil" component={Profile} />
     </Drawer.Navigator>
   );
 };

@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleProp, ViewStyle } from "react-native";
 import styles from "./style";
 import { Input as InputUI } from "@rneui/themed";
 import Colors from "../../styles/colors";
@@ -11,6 +11,7 @@ interface Props {
   onBlur: (e: any) => void;
   value?: string;
   error?: string;
+  customStyle?: StyleProp<ViewStyle>;
 }
 
 const Input = ({
@@ -21,9 +22,10 @@ const Input = ({
   error,
   onChange,
   onBlur,
+  customStyle
 }: Props) => {
   return (
-    <View style={styles.inputContainer}>
+    <View style={{...styles.inputContainer, ...customStyle}}>
       {label ? <Text style={styles.InputLable}>{label}</Text> : null}
       <InputUI
         placeholder={placeholder ? placeholder : ""}

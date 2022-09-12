@@ -37,7 +37,13 @@ const Header = ({
           color={Colors.DeepYellow[6]}
         />
       </TouchableOpacity>
-      {title ? <Text>Header</Text> : <Image source={Logo} />}
+      {title ? (
+        <Text style={{ fontSize: 24, fontWeight: "600", lineHeight: 29, textAlign: 'center' }}>
+          {title}
+        </Text>
+      ) : (
+        <Image source={Logo} />
+      )}
       {rightButton ? (
         <TouchableOpacity onPress={() => rightAction}>
           <Icon
