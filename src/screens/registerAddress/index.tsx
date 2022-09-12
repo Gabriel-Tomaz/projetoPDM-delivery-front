@@ -22,7 +22,7 @@ import Header from "../../components/header";
 import { RootStackParamList } from "../RootStackPrams";
 import { addAddress } from "../../store/actions/address.actions";
 
-type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
+type authScreenProp = DrawerNavigationProp<RootStackParamList, "Endereços">;
 
 const RegisterAddress = () => {
   const dispatch = useAppDispatch();
@@ -64,7 +64,7 @@ const RegisterAddress = () => {
           if (err) {
             console.log(err);
           } else {
-            console.log("ok");
+           navigation.navigate('Endereços');
           }
         }
       )
