@@ -22,7 +22,7 @@ import { Icon } from "@rneui/base";
 import { RootStackParamList } from "../RootStackPrams";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-type authScreenProp = DrawerNavigationProp<RootStackParamList, "">;
+type authScreenProp = DrawerNavigationProp<RootStackParamList, "Cardapio">;
 
 const Cardapio = () => {
   const { user, token } = useSelector((state: any) => state.user);
