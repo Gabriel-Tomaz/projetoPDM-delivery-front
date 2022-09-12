@@ -21,8 +21,8 @@ interface Props {
 }
 
 const ShoppingBag = ({ totalItens = 4 }: Props) => {
-  const navigation = useNavigation();
   const { user } = useSelector((state: any) => state.user);
+  const navigation = useNavigation();
   const [productBad, setProductBag] = useState([{
     id_sacola: 0,
     id_produto: 0,
@@ -58,7 +58,7 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
 
     //Alert.alert(date + '-' + month + '-' + year);
     // You can turn it in to your desired format
-    return date + '-' + month + '-' + year;//format: d-m-y;
+    return month + '-' + date + '-' + year;//format: d-m-y;
   }
   let sum = 0
   const subTotal = () => {
@@ -114,8 +114,13 @@ const ShoppingBag = ({ totalItens = 4 }: Props) => {
           .catch((error) => console.error(error))
     })
 
+    openScreen();
+
   }
 
+  const openScreen = () => {
+    navigation.navigate("Cardapio");
+  }
 
 
   const deletarProduto = async (item: any) => {

@@ -14,6 +14,7 @@ import OrderHistory from "./screens/orderHistory";
 import OrderDetails from "./screens/orderDetails";
 import ShoppingBag from "./screens/shoppingBag";
 import RegisterAddress from "./screens/registerAddress";
+import Cardapio from "./screens/cardapio";
 
 const Routes = () => {
   const { token } = useSelector((state: any) => state.user);
@@ -43,6 +44,7 @@ const Routes = () => {
           <Stack.Screen name="OrderHistory" component={OrderHistory} />
           <Stack.Screen name="OrderDetails" component={OrderDetails} />
           <Stack.Screen name="RegisterAddress" component={RegisterAddress} />
+          <Stack.Screen name="Cardapio" component={Cardapio} />
         </Stack.Navigator>
       )}
     </NavigationContainer>

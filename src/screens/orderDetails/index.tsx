@@ -94,13 +94,12 @@ const OrderDetails = ({ totalItens }: OrderDetailsProps) => {
           </View>
 
           <StatusOrder
-            status={orderDetails[0].status_pedido}
+            status={"Enviado"}
           />
         </View>
 
         <View>
           {orderDetails.map(item => {
-            console.log(item)
             return (
               <OrderDetailsCard
                 product={item.nome}
