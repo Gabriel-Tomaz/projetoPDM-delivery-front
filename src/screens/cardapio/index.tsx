@@ -105,93 +105,28 @@ const Cardapio = () => {
             />
           </TouchableOpacity>
         </View>
-
-        {
-          <FlatList
-            data={product}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={2}
-            renderItem={({ item }) => {
-              return (
-                <TouchableOpacity
-                  onPress={(f) => openScreen(item)}
-                  style={[styles.cardProd, { width: width / 2 - 40 }]}
-                >
-                  <View
-                    style={[
-                      styles.CardContainer,
-                      {
-                        flex: 1,
-                        width,
-                        height,
-                        backgroundColor: Colors.Gray["0"],
-                      },
-                    ]}
-                  >
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        marginBottom: 4,
-                      }}
-                    >
-                      <TouchableOpacity
-                        style={{
-                          padding: 4,
-                        }}
-                        onPress={() => navigation.openDrawer()}
-                      >
-                        <Icon
-                          type="material"
-                          name="menu"
-                          color={Colors.DeepYellow[6]}
-                          size={24}
-                        />
-                      </TouchableOpacity>
-                    </View>
-
-                    {
-                      <FlatList
-                        data={product}
-                        keyExtractor={(item) => item.id.toString()}
-                        numColumns={2}
-                        renderItem={({ item }) => {
-                          return (
-                            <TouchableOpacity
-                              onPress={(f) => openScreen(item)}
-                              style={[
-                                styles.cardProd,
-                                { width: width / 2 - 40 },
-                              ]}
-                            >
-                              <Image
-                                style={{ width: 95, height: 95, marginTop: 10 }}
-                                source={{ uri: item.img.toString() }}
-                              />
-                              <View style={styles.text}>
-                                <Text>{item.nome}</Text>
-                                <Text style={styles.total}>R${item.preco}</Text>
-                              </View>
-                            </TouchableOpacity>
-                          );
-                        }}
-                      />
-                    }
-                  </View>
-                  <Image
-                    style={{ width: 95, height: 95, marginTop: 10 }}
-                    source={{ uri: item.img.toString() }}
-                  />
-                  <View style={styles.text}>
-                    <Text>{item.nome}</Text>
-                    <Text style={styles.total}>R${item.preco}</Text>
-                  </View>
-                </TouchableOpacity>
-              );
-            }}
-          />
-        }
+        <FlatList
+          data={product}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={(f) => openScreen(item)}
+                style={[styles.cardProd, { width: width / 2 - 40 }]}
+              >
+                <Image
+                  style={{ width: 95, height: 95, marginTop: 10 }}
+                  source={{ uri: item.img.toString() }}
+                />
+                <View style={styles.text}>
+                  <Text>{item.nome}</Text>
+                  <Text style={styles.total}>R${item.preco}</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          }}
+        />
       </View>
     </SafeAreaView>
   );
