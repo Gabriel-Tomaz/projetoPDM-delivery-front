@@ -29,29 +29,10 @@ type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
 const Profile: React.FC = () => {
   const userLogin = useSelector<authScreenProp>((state: any) => state.user.user);
   const navigation = useNavigation();
-  const [imagesURI, setImagesURI] = React.useState<string[]>([]);
-
-  const [user, setUser] = React.useState([{
-    id: 0,
-    email: '',
-    nome: '',
-    img:  imagesURI[imagesURI.length - 1],
-    senha: ''
-  }]);
 
   const [name, setName] = React.useState(String);
   const [email, setEmail] = React.useState(String);
-  const [password, setPassword] = React.useState(String);
-
-  // React.useEffect(() => {
-  //   const searchOrders = async () => {
-  //     await api.get(`/userget/${userLogin.id}`)
-  //         .then((resposta) => resposta.data)
-  //         .then((json) => setUser(json))
-  //         .catch((error) => console.error(error))
-  //   }
-  //   searchOrders();
-  // }, []);
+  const [imagesURI, setImagesURI] = React.useState<string[]>([]);
 
 
   React.useEffect(() => {
@@ -97,14 +78,15 @@ const Profile: React.FC = () => {
   const Singup = async (user: User) => {
     const newUser = {
       id: userLogin.id,
-      nome: user.nome? user.nome : name,
-      email: user.email ? user.email : email,
+      nome: user.nome? user.nome : userLogin.nome,
+      email: user.email ? user.email : userLogin.email,
       senha: user.senha,
       img: imagesURI[imagesURI.length - 1]
     }
+    console.log(newUser)
     await api.put(`/userupdate`, newUser)
                     .then((resposta) => resposta.data)
-                    .then((json) => setUser(json))
+                    .then((json) => console.log(json))
                     .catch((error) => console.error(error))
 
     navigation.navigate('Cardápio');
@@ -174,10 +156,7 @@ const Profile: React.FC = () => {
                            value={values.senha}
                            onBlur={handleBlur("senha")}
                            onChange={handleChange("senha")}
-                           error={
-                      errors.senha && touched.senha
-                          ? errors.senha
-                          : undefined
+                           error={errors.senha && touched.senha ? errors.senha : undefined
                     }/>
 
                 <View style={{ marginTop: 20 }}>
