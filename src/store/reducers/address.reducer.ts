@@ -46,6 +46,23 @@ const reducer = (state = initialState, action: any) => {
         loading: false,
         errors: action,
       };
+    //Delete
+    case actions.DELETE_ADDRESSES:
+      return {
+        ...state,
+        loading: true,
+      };
+    case actions.DELETE_ADDRESSES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case action.DELETE_ADDRESSES_FAILED:
+      return {
+        ...state,
+        loading: false,
+        errors: action,
+      };
     default:
       return state;
   }

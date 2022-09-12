@@ -5,4 +5,6 @@ export type RootStackParamList = {
     Cardapio: undefined
     Produtos: undefined;
     Welcome: undefined;
+    RegisterAddress: undefined;
+    Endereços: undefined;
 };
