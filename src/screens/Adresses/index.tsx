@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   Platform,
@@ -19,7 +19,8 @@ import Button from "../../components/button";
 import Colors from "../../styles/colors";
 import Header from "../../components/header";
 import { RootStackParamList } from "../RootStackPrams";
-import { addAddress } from "../../store/actions/address.actions";
+import { getAddresses } from "../../store/actions/address.actions";
+import { Address } from "../../@types/address";
 
 type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
 
@@ -27,6 +28,19 @@ const ListAddresses = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<authScreenProp>();
   const { user } = useSelector((state: any) => state.user);
+  const { addresses } = useSelector((state: any) => state.address);
+
+  useEffect(() => {
+    dispatch(
+      getAddresses(user.id, (err: any) => {
+        if (err) {
+          console.log(err);
+        }
+      })
+    );
+  }, []);
+
+  console.log(addresses);
 
   return (
     <SafeAreaView
@@ -41,63 +55,67 @@ const ListAddresses = () => {
         contentContainerStyle={{ paddingHorizontal: 18, paddingVertical: 18 }}
       >
         <View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              borderWidth: 1,
-              borderColor: Colors.Gray[2],
-              paddingHorizontal: 12,
-              paddingVertical: 12,
-              borderRadius: 8,
-            }}
-          >
+          {addresses.map((address: Address) => (
             <View
+              key={address.rua}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
+                justifyContent: "space-between",
+                borderWidth: 1,
+                borderColor: Colors.Gray[2],
+                paddingHorizontal: 12,
+                paddingVertical: 12,
+                borderRadius: 8,
+                marginBottom: 12,
               }}
             >
-              <Icon
-                type="material"
-                name="location-pin"
-                size={24}
-                color={Colors.DeepYellow[6]}
-              />
-              <View style={{ marginLeft: 12 }}>
-                <View>
-                  <Text
-                    style={{
-                      color: Colors.Neutral.black,
-                      fontWeight: "600",
-                      fontSize: 16,
-                      marginBottom: 4,
-                    }}
-                  >
-                    104 - Rua das flores
-                  </Text>
-                  <Text
-                    style={{
-                      color: Colors.Gray[5],
-                      fontWeight: "500",
-                      fontSize: 12,
-                    }}
-                  >
-                    Bela Vista - Mauriti
-                  </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Icon
+                  type="material"
+                  name="location-pin"
+                  size={24}
+                  color={Colors.DeepYellow[6]}
+                />
+                <View style={{ marginLeft: 12 }}>
+                  <View>
+                    <Text
+                      style={{
+                        color: Colors.Neutral.black,
+                        fontWeight: "600",
+                        fontSize: 16,
+                        marginBottom: 4,
+                      }}
+                    >
+                      {address.rua}
+                    </Text>
+                    <Text
+                      style={{
+                        color: Colors.Gray[5],
+                        fontWeight: "500",
+                        fontSize: 12,
+                      }}
+                    >
+                      {address.bairro} - {address.cidade}
+                    </Text>
+                  </View>
                 </View>
               </View>
+              <TouchableOpacity>
+                <Icon
+                  type="material"
+                  name="more-vert"
+                  size={24}
+                  color={Colors.Neutral.black}
+                />
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity>
-              <Icon
-                type="material"
-                name="more-vert"
-                size={24}
-                color={Colors.Neutral.black}
-              />
-            </TouchableOpacity>
-          </View>
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>
