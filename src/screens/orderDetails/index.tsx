@@ -63,7 +63,6 @@ const OrderDetails = ({ totalItens }: OrderDetailsProps) => {
 
   useEffect(() => {
     const searchOrders = async () => {
-      console.log("Vai menino" + num_pedido)
       await api.get(`/orderDetails/${user.id}/${num_pedido}`)
         .then((resposta) => resposta.data)
         .then((json) => setOrderDetails(json))

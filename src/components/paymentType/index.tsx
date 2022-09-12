@@ -66,14 +66,14 @@ const PaymentCard = ({ tipoPagamento, troco, ...rest }: PaymentCardProps) => {
                 </TouchableOpacity>
             </View>
 
-            {dinheiro ? null :
-                <View>
-                    <Text style={[styles.title]}>Troco</Text>
-                    <View style={styles.troco}>
-                        <Text style={styles.text}>R$ {troco}</Text>
-                    </View>
-                </View>
-            }
+            {/*{dinheiro ? null :*/}
+            {/*    <View>*/}
+            {/*        <Text style={[styles.title]}>Troco</Text>*/}
+            {/*        <View style={styles.troco}>*/}
+            {/*            <Text style={styles.text}>R$ {troco}</Text>*/}
+            {/*        </View>*/}
+            {/*    </View>*/}
+            {/*}*/}
 
 
         </View>

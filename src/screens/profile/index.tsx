@@ -83,7 +83,7 @@ const Profile: React.FC = () => {
       senha: user.senha,
       img: imagesURI[imagesURI.length - 1]
     }
-    console.log(newUser)
+
     await api.put(`/userupdate`, newUser)
                     .then((resposta) => resposta.data)
                     .then((json) => console.log(json))
