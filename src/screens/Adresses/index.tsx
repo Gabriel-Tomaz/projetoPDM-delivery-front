@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   Platform,
@@ -7,28 +7,48 @@ import {
   View,
   Text,
   TouchableOpacity,
+  ViewStyle,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useSelector } from "react-redux";
-import { Icon } from "@rneui/base";
+import { Icon, BottomSheet, ListItem } from "@rneui/base";
 
 import { useAppDispatch } from "../../hooks";
-import Input from "../../components/input";
 import Button from "../../components/button";
 import Colors from "../../styles/colors";
 import Header from "../../components/header";
 import { RootStackParamList } from "../RootStackPrams";
-import { getAddresses } from "../../store/actions/address.actions";
+import {
+  getAddresses,
+  deleteAddress,
+} from "../../store/actions/address.actions";
 import { Address } from "../../@types/address";
 
-type authScreenProp = DrawerNavigationProp<RootStackParamList, "Register">;
+type authScreenProp = DrawerNavigationProp<
+  RootStackParamList,
+  "RegisterAddress"
+>;
 
 const ListAddresses = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<authScreenProp>();
   const { user } = useSelector((state: any) => state.user);
   const { addresses } = useSelector((state: any) => state.address);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [selectedId, setSelectedId] = useState<any>();
+
+  const handleDeleteAddress = (id: any) => {
+    dispatch(
+      deleteAddress(id, (err: any) => {
+        if (err) {
+          console.log(err);
+        } else {
+          setIsVisible(false);
+        }
+      })
+    );
+  };
 
   useEffect(() => {
     dispatch(
@@ -38,9 +58,31 @@ const ListAddresses = () => {
         }
       })
     );
-  }, []);
+  }, [isVisible]);
 
-  console.log(addresses);
+  const list = [
+    {
+      title: "Editar endereço",
+      containerStyle: { BackgroundColor: Colors.Neutral.white },
+      iconName: "edit",
+    },
+    {
+      title: "Deletar endereço",
+      containerStyle: { BackgroundColor: Colors.Neutral.white },
+      iconName: "delete",
+      onPress: () => handleDeleteAddress(selectedId),
+    },
+    {
+      title: "Cancelar",
+      containerStyle: { backgroundColor: Colors.Red[5] },
+      titleStyle: { color: Colors.Neutral.white },
+      onPress: () => setIsVisible(false),
+      iconName: "highlight-off",
+      iconColor: Colors.Neutral.white,
+    },
+  ];
+
+  console.log(selectedId);
 
   return (
     <SafeAreaView
@@ -57,7 +99,7 @@ const ListAddresses = () => {
         <View>
           {addresses.map((address: Address) => (
             <View
-              key={address.rua}
+              key={address.id}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -106,7 +148,12 @@ const ListAddresses = () => {
                   </View>
                 </View>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setSelectedId(address.id);
+                  setIsVisible(!isVisible);
+                }}
+              >
                 <Icon
                   type="material"
                   name="more-vert"
@@ -118,6 +165,43 @@ const ListAddresses = () => {
           ))}
         </View>
       </ScrollView>
+      <View
+        style={{
+          backgroundColor: Colors.Neutral.white,
+          paddingVertical: 18,
+          paddingHorizontal: 18,
+        }}
+      >
+        <Button
+          type="primary"
+          title="Adicionar endereço"
+          onPress={() => {
+            navigation.navigate("RegisterAddress");
+          }}
+        ></Button>
+      </View>
+      <BottomSheet modalProps={{}} isVisible={isVisible}>
+        {list.map((l, i) => (
+          <ListItem
+            key={i}
+            containerStyle={l.containerStyle}
+            onPress={l.onPress}
+          >
+            <ListItem.Content
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <Icon type="material" name={l.iconName} color={l.iconColor} />
+              <ListItem.Title style={{ ...l.titleStyle, marginLeft: 12 }}>
+                {l.title}
+              </ListItem.Title>
+            </ListItem.Content>
+          </ListItem>
+        ))}
+      </BottomSheet>
     </SafeAreaView>
   );
 };

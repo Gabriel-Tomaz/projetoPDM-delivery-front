@@ -1,4 +1,5 @@
 export interface Address {
+  id?: number;
   id_usuario?: number;
   rua: string;
   numero: string;
